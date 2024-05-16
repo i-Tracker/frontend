@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/tailwind/utils';
 import { HTMLProps, ReactNode } from 'react';
 
 const typographyMap = {
@@ -9,7 +9,7 @@ const typographyMap = {
   h2: {
     tagName: 'h2',
     className:
-      'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+      'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0',
   },
   h3: {
     tagName: 'h3',
