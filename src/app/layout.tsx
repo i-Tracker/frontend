@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
+import { QueryProvider } from '@/shared/components/QueryProvider';
+import { MSWProvider } from '@/shared/components/MSWProvider';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -21,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <MSWProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </MSWProvider>
+      </body>
     </html>
   );
 }

@@ -8,8 +8,7 @@ const typographyMap = {
   },
   h2: {
     tagName: 'h2',
-    className:
-      'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+    className: 'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0',
   },
   h3: {
     tagName: 'h3',
@@ -29,8 +28,7 @@ const typographyMap = {
   },
   ['line-code']: {
     tagName: 'code',
-    className:
-      'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
+    className: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
   },
   large: {
     tagName: 'div',
@@ -48,19 +46,11 @@ interface TextProps {
   children: ReactNode;
 }
 
-export function Text({
-  typography = 'p',
-  className,
-  children,
-  ...props
-}: TextProps) {
+export function Text({ typography = 'p', className, children, ...props }: TextProps) {
   const Typography = typographyMap[typography]['tagName'];
 
   return (
-    <Typography
-      className={cn(typographyMap[typography]['className'], className)}
-      {...props}
-    >
+    <Typography className={cn(typographyMap[typography]['className'], className)} {...props}>
       {children}
     </Typography>
   );
