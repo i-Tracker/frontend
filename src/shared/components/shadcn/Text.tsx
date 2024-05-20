@@ -38,6 +38,10 @@ const typographyMap = {
     tagName: 'small',
     className: 'text-sm font-medium leading-none',
   },
+  xsmall: {
+    tagName: 'small',
+    className: 'text-xs font-medium leading-none',
+  },
 } as const;
 
 interface TextProps {
