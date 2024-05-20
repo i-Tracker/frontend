@@ -4,7 +4,7 @@ export type GetCategoryListResponse = {
   categories: string[];
 };
 
-export const getCategoryListUrl = `${API_BASE_URL}/category`;
+export const getCategoryListUrl = `${API_BASE_URL}/api/category`;
 
 export const getCategoryList = async (): Promise<GetCategoryListResponse> => {
   const response = await fetch(getCategoryListUrl);
