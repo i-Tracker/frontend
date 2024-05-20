@@ -7,6 +7,6 @@ export const getMockCategoryList: HttpHandler = http.get(getCategoryListUrl, () 
 
 export const GET_MOCK_CATEGORY_LIST = {
   success: {
-    categories: ['Macbook Air', 'Macbook Pro', 'iPhone', 'Mac', 'AirPods', 'Watch', 'iPad'],
+    categories: ['macbook_air', 'macbook_pro', 'i_phone', 'mac', 'air_pods', 'apple_watch', 'i_pad'],
   },
 };

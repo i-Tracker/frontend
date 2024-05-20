@@ -1,7 +1,8 @@
 import { API_BASE_URL } from '@/shared/api/constants';
+import { categoryType } from '../constants';
 
 export type GetCategoryListResponse = {
-  categories: string[];
+  categories: categoryType[];
 };
 
 export const getCategoryListUrl = `${API_BASE_URL}/api/category`;
