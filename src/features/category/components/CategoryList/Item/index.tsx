@@ -8,7 +8,7 @@ interface CategoryItemProps {
 export const CategoryItem = ({ categoryItem }: CategoryItemProps) => {
   return (
     <li className="flex flex-col items-center gap-2 cursor-pointer">
-      <div className="flex items-center justify-center w-[80px] h-[80px] bg-slate-200 rounded">
+      <div className="flex items-center justify-center w-[80px] h-[80px] bg-neutral-100 rounded">
         <Image
           src={`/category/${categoryItem}.png`}
           alt={categoryItem}
