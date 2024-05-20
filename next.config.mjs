@@ -8,6 +8,22 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'thumbnail6.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'thumbnail10.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
+    ],
+  },
   reactStrictMode: true,
   eslint: {
     ignoreDuringBuilds: true,
