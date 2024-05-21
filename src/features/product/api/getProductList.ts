@@ -8,7 +8,7 @@ export type GetProductListResponse = {
 export type Product = {
   id: number;
   title: string;
-  category: string;
+  category: categoryType;
   size: number;
   basePrice: number;
   discountPercentage: number;
