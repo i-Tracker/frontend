@@ -10,17 +10,21 @@ interface ProductItemProps {
 export const ProductItem = ({ productItem }: ProductItemProps) => {
   return (
     <li>
-      <Link href="" className="flex flex-col items-center gap-2 cursor-pointer">
+      <Link href="" className="w-[150px] flex flex-col items-center gap-2 cursor-pointer">
         <div className="flex items-center justify-center w-[150px] h-[150px] bg-neutral-100 rounded">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
-            width="60"
-            height="60"
+            width="120"
+            height="120"
             style={{ width: 'auto', height: 'auto' }}
           />
         </div>
-        <Text typography="xsmall">{productItem.title}</Text>
+        <div>{productItem.label}</div>
+        <Text typography="p" className="font-bold">
+          {productItem.category}
+        </Text>
+        <Text typography="small">{productItem.title}</Text>
       </Link>
     </li>
   );

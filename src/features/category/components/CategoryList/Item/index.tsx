@@ -1,4 +1,4 @@
-import { categoryMap, categoryType, categoryValues } from '@/features/category/constants';
+import { categoryMap, categoryType } from '@/features/category/constants';
 import { Text } from '@/shared/components/shadcn/Text';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,8 +17,8 @@ export const CategoryItem = ({ categoryItem }: CategoryItemProps) => {
           <Image
             src={`/category/${categoryName}.png`}
             alt={categoryItem}
-            width="60"
-            height="60"
+            width="40"
+            height="40"
             style={{ width: 'auto', height: 'auto' }}
           />
         </div>

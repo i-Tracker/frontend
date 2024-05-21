@@ -1,8 +1,10 @@
-import { HttpHandler, HttpResponse, http } from 'msw';
+import { HttpHandler, HttpResponse, delay, http } from 'msw';
 import { getProductListUrl } from './getProductList';
 
-export const getMockProductList: HttpHandler = http.get(`${getProductListUrl(':category')}`, ({ params }) => {
+export const getMockProductList: HttpHandler = http.get(`${getProductListUrl(':category')}`, async ({ params }) => {
   const { category } = params;
+
+  await delay(2000);
 
   if (category === 'macbook_air') {
     return HttpResponse.json(GET_MOCK_MACBOOK_AIR_LIST.success);

@@ -1,6 +1,6 @@
 export const categoryMap = {
-  macbook_air: 'Macbook Air',
-  macbook_pro: 'Macbook Pro',
+  macbook_air: 'MacBook Air',
+  macbook_pro: 'MacBook Pro',
   i_phone: 'iPhone',
   mac: 'Mac',
   air_pods: 'AirPods',

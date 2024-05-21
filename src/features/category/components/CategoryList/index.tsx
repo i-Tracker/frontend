@@ -7,8 +7,8 @@ export const CategoryList = () => {
   const { data } = useGetCategoryList();
 
   return (
-    <div className="max-w-[1080px] mx-auto px-4">
-      <ul className="grid grid-cols-4 md:grid-cols-7 gap-6">
+    <div className="max-w-[1080px] mx-auto">
+      <ul className="grid grid-cols-4 md:grid-cols-7 gap-4">
         {data?.categories.map((category) => {
           return <CategoryItem key={category} categoryItem={category} />;
         })}

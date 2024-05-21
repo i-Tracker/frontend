@@ -18,7 +18,7 @@ export type Product = {
   isOutOfStock: boolean;
 };
 
-export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/product/${category}`;
+export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/products/${category}`;
 
 export const getProductList = async (category: categoryType): Promise<GetProductListResponse> => {
   const response = await fetch(getProductListUrl(category));
