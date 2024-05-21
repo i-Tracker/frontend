@@ -31,6 +31,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  devTools: process.env.NODE_ENV === 'development',
 };
 
 export default nextConfig;
