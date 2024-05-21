@@ -1,13 +1,11 @@
-import { Button } from '@/shared/components/shadcn/ui/button';
-import { getCategoryPageLink } from '@/shared/lib/link/page';
-import Link from 'next/link';
+import { Text } from '@/shared/components/shadcn/Text';
 
 export default function Home() {
   return (
     <main>
-      <Button>
-        <Link href={getCategoryPageLink()}>카테코리 상품 보러가기</Link>
-      </Button>
+      <Text typography="h4" className="md:text-3xl">
+        이번주 할인율 TOP5
+      </Text>
     </main>
   );
 }

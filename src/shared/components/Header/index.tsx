@@ -7,7 +7,7 @@ import { Button } from '../shadcn/ui/button';
 export const Header = () => {
   return (
     <header className="w-full flex items-center">
-      <nav className="w-[1080px] h-[70px] flex items-center justify-between mx-auto p-4 border-b">
+      <nav className="w-[1080px] h-[70px] flex items-center justify-between mx-auto border-b">
         <Link href={getMainPageLink()}>
           <Logo />
         </Link>

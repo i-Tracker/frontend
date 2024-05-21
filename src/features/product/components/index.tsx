@@ -13,8 +13,8 @@ export const ProductList = ({ category }: { category: categoryType }) => {
   }
 
   return (
-    <div className="max-w-[1080px] mx-auto px-4">
-      <ul className="grid grid-cols-2 md:grid-cols-4 gap-6">
+    <div className="max-w-[1080px] mx-auto">
+      <ul className="grid grid-cols-2 md:grid-cols-6 gap-8">
         {productData?.data.map((productItem) => {
           return <ProductItem key={productItem.id} productItem={productItem} />;
         })}
