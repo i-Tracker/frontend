@@ -1,13 +1,16 @@
+import { categoryMap } from '@/features/category/constants';
+import { Macbook, Product } from '@/features/product/api/getProductList';
 import { Text } from '@/shared/components/shadcn/Text';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '../../api/getProductList';
 
 interface ProductItemProps {
-  productItem: Product;
+  productItem: Product | Macbook;
 }
 
 export const ProductItem = ({ productItem }: ProductItemProps) => {
+  const categoryName = categoryMap[productItem.category];
+
   return (
     <li>
       <Link href="" className="w-[150px] flex flex-col items-center gap-2 cursor-pointer">
@@ -22,7 +25,7 @@ export const ProductItem = ({ productItem }: ProductItemProps) => {
         </div>
         <div>{productItem.label}</div>
         <Text typography="p" className="font-bold">
-          {productItem.category}
+          {categoryName}
         </Text>
         <Text typography="small">{productItem.title}</Text>
       </Link>

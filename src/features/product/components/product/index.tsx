@@ -1,7 +1,7 @@
 'use client';
 
 import { categoryType } from '@/features/category/constants';
-import { useGetProductList } from '../hooks/useGetProductList';
+import { useGetProductList } from '../../hooks/useGetProductList';
 import { ProductItem } from './Item';
 
 export const ProductList = ({ category }: { category: categoryType }) => {
