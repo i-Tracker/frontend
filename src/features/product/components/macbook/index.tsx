@@ -1,10 +1,10 @@
 'use client';
 
-import { categoryType } from '@/features/category/constants';
+import { CategoryType } from '@/features/category/constants';
 import { useGetProductList } from '../../hooks/useGetProductList';
 import { MacbookProductListItem } from './Item';
 
-export const MacbookProductList = ({ category }: { category: categoryType }) => {
+export const MacbookProductList = ({ category }: { category: CategoryType }) => {
   const { data: productData } = useGetProductList(category);
 
   return (

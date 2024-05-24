@@ -3,11 +3,11 @@ export const categoryMap = {
   macbook_pro: 'MacBook Pro',
   i_phone: 'iPhone',
   mac: 'Mac',
-  air_pods: 'AirPods',
+  airpods: 'AirPods',
   apple_watch: 'Watch',
   i_pad: 'iPad',
 } as const;
 
-export type categoryType = keyof typeof categoryMap;
+export type CategoryType = keyof typeof categoryMap;
 
 export const categoryValues = Object.values(categoryMap);

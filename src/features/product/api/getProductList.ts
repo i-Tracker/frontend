@@ -1,4 +1,4 @@
-import { categoryType } from '@/features/category/constants';
+import { CategoryType } from '@/features/category/constants';
 import { API_BASE_URL } from '@/shared/api/constants';
 
 export type GetProductListResponse = {
@@ -12,7 +12,7 @@ export type GetMacbookProductListResponse = {
 export type Product = {
   id: number;
   title: string;
-  category: categoryType;
+  category: CategoryType;
   size: number;
   discountPercentage: number;
   currentPrice: number;
@@ -30,9 +30,9 @@ export type Macbook = Product & {
   color: string;
 };
 
-export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/products/${category}`;
+export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}`;
 
-export const getProductList = async (category: categoryType): Promise<GetProductListResponse> => {
+export const getProductList = async (category: CategoryType): Promise<GetProductListResponse> => {
   const response = await fetch(getProductListUrl(category));
 
   const data: GetProductListResponse = (await response.json()) as GetProductListResponse;
