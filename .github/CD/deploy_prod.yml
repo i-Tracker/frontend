@@ -1,0 +1,72 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - deploytest
+
+env:
+  S3_BUCKET_NAME: itracker-front
+  CODE_DEPLOY_APPLICATION_NAME: itracker
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: itracker-front-prod
+
+jobs:
+  build:
+    environment: develop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v3
+
+      - name: Check Node v
+        run: node -v
+
+      - name: Generate Environment Variables File
+        run: |
+          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env.local
+        env:
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+
+      - name: Cache yarn
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: |
+            ~/.cache/yarn
+            **/node_modules
+          key: yarn-cache-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-cache-${{ runner.os }}-
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
+
+      - name: Generate filename
+        id: vars
+        run: |
+          ZIP_FILENAME=build-$(date +%Y%m%d%H%M%S).zip
+          echo "ZIP_FILENAME=$ZIP_FILENAME" >> $GITHUB_ENV
+
+      - name: zip create
+        run: zip -qq -r --symlinks ./${{ env.ZIP_FILENAME }} .next appspec.yml deploy.sh
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./${{ env.ZIP_FILENAME }} s3://$S3_BUCKET_NAME/${{ env.ZIP_FILENAME }}
+
+      - name: Deploy For Development
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=$S3_BUCKET_NAME,key=${{ env.ZIP_FILENAME }},bundleType=zip
