@@ -4,6 +4,16 @@ import { MacbookProductListSkeleton } from '@/features/product/components/macboo
 import { Text } from '@/shared/components/shadcn/Text';
 import { Suspense } from 'react';
 
+export function generateStaticParams() {
+  // Create an array of all possible category names
+  const categories = Object.keys(categoryMap);
+
+  // Map each category to the required format
+  return categories.map((category) => ({
+    categoryName: category,
+  }));
+}
+
 export default function CategoryNamePage({ params }: { params: { categoryName: CategoryType } }) {
   const categoryName = categoryMap[params.categoryName];
 
