@@ -22,6 +22,18 @@ const nextConfig = {
         port: '',
         pathname: '/thumbnails/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'thumbnail8.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'thumbnail7.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
     ],
   },
   reactStrictMode: true,
