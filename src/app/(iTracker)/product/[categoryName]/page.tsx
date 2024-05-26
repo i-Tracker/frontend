@@ -1,17 +1,15 @@
 import { categoryMap, CategoryType } from '@/features/category/constants';
 import { MacbookProductList } from '@/features/product/components/macbook';
 import { MacbookProductListSkeleton } from '@/features/product/components/macbook/Skeleton';
-import { API_BASE_URL } from '@/shared/api/constants';
 import { Text } from '@/shared/components/shadcn/Text';
 import { Suspense } from 'react';
 
-export async function generateStaticParams() {
-  const res = await fetch(`${API_BASE_URL}/api/v1/category`);
+export function generateStaticParams() {
+  // const categoryData = await getCategoryList();
 
-  const url = (await res.json()) as string[];
+  const categories = ['macbook_air', 'macbook_pro'];
 
-  // Map each category to the required format
-  return url.map((category) => ({
+  return categories.map((category: string) => ({
     categoryName: category,
   }));
 }
