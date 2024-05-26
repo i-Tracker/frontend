@@ -42,14 +42,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Generate filename
-        id: vars
-        run: |
-          ZIP_FILENAME=build-$(date +%Y%m%d%H%M%S).zip
-          echo "ZIP_FILENAME=$ZIP_FILENAME" >> $GITHUB_ENV
-
       - name: zip create
-        run: zip -qq -r --symlinks ./${{ env.ZIP_FILENAME }}
+        run: zip -qq -r ./itracker-build.zip .
         shell: bash
 
       - name: Configure AWS credentials
