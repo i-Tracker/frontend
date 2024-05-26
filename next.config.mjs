@@ -8,8 +8,6 @@ const nextConfig = {
 
     return config;
   },
-  output: 'export',
-
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -46,7 +44,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  devTools: process.env.NODE_ENV === 'development',
 };
 
 export default nextConfig;
