@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="$PATH:/home/ubuntu/.nvm/versions/node/v18.17.0/bin" 
+
 # Navigate to deployment directory
 cd /home/ubuntu/frontend
 
