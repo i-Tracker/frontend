@@ -1,14 +1,16 @@
 import { API_BASE_URL } from '@/shared/api/constants';
-import { categoryType } from '../constants';
+import { CategoryType } from '../constants';
 
 export type GetCategoryListResponse = {
-  categories: categoryType[];
+  categories: CategoryType[];
 };
 
-export const getCategoryListUrl = `${API_BASE_URL}/api/category`;
+export const getCategoryListUrl = `${API_BASE_URL}/api/v1/category`;
 
 export const getCategoryList = async (): Promise<GetCategoryListResponse> => {
   const response = await fetch(getCategoryListUrl);
 
-  return await response.json();
+  const data = (await response.json()) as GetCategoryListResponse;
+
+  return data;
 };

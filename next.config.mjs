@@ -9,6 +9,7 @@ const nextConfig = {
     return config;
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -22,6 +23,18 @@ const nextConfig = {
         port: '',
         pathname: '/thumbnails/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'thumbnail8.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'thumbnail7.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/**',
+      },
     ],
   },
   reactStrictMode: true,
@@ -31,7 +44,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  devTools: process.env.NODE_ENV === 'development',
 };
 
 export default nextConfig;
