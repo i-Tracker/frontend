@@ -9,7 +9,7 @@ export const MacbookProductList = ({ category }: { category: CategoryType }) => 
 
   return (
     <div className="max-w-[1080px] mx-auto">
-      <ul className="grid grid-cols-2 md:grid-cols-5 gap-5">
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
         {productData?.data.map((productItem) => {
           return <MacbookProductListItem key={productItem.id} productItem={productItem} />;
         })}

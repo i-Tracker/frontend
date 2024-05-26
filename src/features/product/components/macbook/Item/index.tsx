@@ -19,9 +19,9 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
-            width="120"
-            height="120"
-            style={{ width: 'auto', height: 'auto' }}
+            width={120}
+            height={120}
+            style={{ width: 120, height: 'auto' }}
           />
         </div>
         <div className="mb-2">

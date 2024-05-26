@@ -19,7 +19,7 @@ export const CategoryItem = ({ categoryItem }: CategoryItemProps) => {
             alt={categoryItem}
             width="40"
             height="40"
-            style={{ width: 'auto', height: 'auto' }}
+            style={{ width: 'auto', height: 36 }}
           />
         </div>
         <Text typography="xsmall">{categoryName}</Text>
