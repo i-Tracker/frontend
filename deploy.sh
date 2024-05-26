@@ -5,5 +5,4 @@ cd /home/ubuntu/frontend
 
 # Start the application
 # Adjust the command below to suit your application's start process
-yarn install
-yarn dev
+yarn deploy

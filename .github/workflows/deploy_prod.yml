@@ -49,7 +49,7 @@ jobs:
           echo "ZIP_FILENAME=$ZIP_FILENAME" >> $GITHUB_ENV
 
       - name: zip create
-        run: zip -qq -r --symlinks ./${{ env.ZIP_FILENAME }} .next appspec.yml deploy.sh
+        run: zip -qq -r --symlinks ./${{ env.ZIP_FILENAME }}
         shell: bash
 
       - name: Configure AWS credentials
