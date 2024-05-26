@@ -23,9 +23,7 @@ jobs:
 
       - name: Generate Environment Variables File
         run: |
-          echo "NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL" >> .env.local
-        env:
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.local
 
       - name: Cache yarn
         uses: actions/cache@v3
