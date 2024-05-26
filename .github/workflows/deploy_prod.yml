@@ -54,7 +54,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./${{ env.ZIP_FILENAME }} s3://$S3_BUCKET_NAME/${{ env.ZIP_FILENAME }}
+        run: aws s3 cp --region ap-northeast-2 ./itracker-build.zip s3://$S3_BUCKET_NAME/itracker-build.zip
 
       - name: Deploy For Development
         run: |
@@ -62,4 +62,4 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
           --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
-          --s3-location bucket=$S3_BUCKET_NAME,key=${{ env.ZIP_FILENAME }},bundleType=zip
+          --s3-location bucket=$S3_BUCKET_NAME,key=itracker-build.zip,bundleType=zip
