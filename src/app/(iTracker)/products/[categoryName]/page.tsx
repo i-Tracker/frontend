@@ -1,4 +1,5 @@
 import { categoryMap, CategoryType } from '@/features/category/constants';
+import { Filter } from '@/features/filter/components/filter';
 import { MacbookProductList } from '@/features/product/components/macbook';
 import { MacbookProductListSkeleton } from '@/features/product/components/macbook/Skeleton';
 import { Text } from '@/shared/components/shadcn/Text';
@@ -30,6 +31,9 @@ export default function CategoryNamePage({ params }: { params: { categoryName: C
       </Text>
       <Suspense fallback={<MacbookProductListSkeleton />}>
         <MacbookProductList category={params.categoryName} />
+      </Suspense>
+      <Suspense fallback={<div>로딩중</div>}>
+        <Filter category={params.categoryName} />
       </Suspense>
     </div>
   );
