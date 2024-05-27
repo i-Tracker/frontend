@@ -1,5 +1,6 @@
 import { categoryMap } from '@/features/category/constants';
 import { Macbook } from '@/features/product/api/getProductList';
+import { Badge } from '@/shared/components/Badge';
 import { Text } from '@/shared/components/shadcn/Text';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
@@ -13,19 +14,19 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
-    <li className="mb-6">
-      <Link href="" className="w-[160px] md:w-[200px] flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center bg-neutral-100 w-[160px] md:w-[200px] h-[170px] rounded">
+    <li className="my-6 w-full">
+      <Link href="" className="flex flex-col gap-2 cursor-pointer">
+        <div className="flex items-center justify-center w-full h-full rounded-md border-neutral-700 border-2">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
             width={120}
             height={120}
-            style={{ width: 120, height: 'auto' }}
+            className="object-contain w-[120px] h-auto"
           />
         </div>
         <div className="mb-2">
-          <Text typography="small">{productItem.label}</Text>
+          <Badge label={productItem.label} />
           <Text typography="h4" className="font-bold">
             {categoryName}
           </Text>
