@@ -16,7 +16,7 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
   return (
     <li className="my-6 w-full">
       <Link href="" className="flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center w-full h-full rounded-md border-neutral-700 border-2">
+        <div className="flex items-center justify-center w-full h-full rounded-md">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
