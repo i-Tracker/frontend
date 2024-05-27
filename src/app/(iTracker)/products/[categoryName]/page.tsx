@@ -18,8 +18,16 @@ export default function CategoryNamePage({ params }: { params: { categoryName: C
   const categoryName = categoryMap[params.categoryName];
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-4 pt-8">
-      <Text typography="h2">{categoryName}</Text>
+    <div className="flex-1 w-full flex flex-col pt-8">
+      <Text typography="h2" className="mb-8 text-center">
+        {categoryName}
+      </Text>
+      <Text typography="h4" className="md:text-2xl">
+        오늘의 할인율 TOP5
+      </Text>
+      <Text typography="p" className="md:text-lg text-gray-500">
+        오늘 할인율이 가장 높은 상품리스트
+      </Text>
       <Suspense fallback={<MacbookProductListSkeleton />}>
         <MacbookProductList category={params.categoryName} />
       </Suspense>
