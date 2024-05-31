@@ -1,12 +1,13 @@
-import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { GetFilterPropertyResponse, getFilterProperty, FilterProperty } from '../api/getFilterProperty';
+import { CategoryType } from '@/features/category/constants';
 
 export const useGetProperty = (
-  category: string,
-  filters: FilterProperty,
-): UseSuspenseQueryResult<GetFilterPropertyResponse> => {
-  return useSuspenseQuery({
-    queryKey: ['filter', category, filters],
-    queryFn: () => getFilterProperty(category, filters),
+  category: CategoryType,
+  property: FilterProperty,
+): UseQueryResult<GetFilterPropertyResponse> => {
+  return useQuery({
+    queryKey: ['filter', category, property],
+    queryFn: () => getFilterProperty(category, property),
   });
 };
