@@ -32,9 +32,7 @@ export default function CategoryNamePage({ params }: { params: { categoryName: C
       <Suspense fallback={<MacbookProductListSkeleton />}>
         <MacbookProductList category={params.categoryName} />
       </Suspense>
-      <Suspense fallback={<div>로딩중</div>}>
-        <Filter category={params.categoryName} />
-      </Suspense>
+      <Filter category={params.categoryName} />
     </div>
   );
 }
