@@ -5,7 +5,15 @@ export type GetFilterPropertyResponse = {
   data: FilterProperty;
 };
 
-type FilterKeys = 'size' | 'color' | 'processor' | 'storage' | 'memory';
+export const filterKeyMap = {
+  size: '화면 크기',
+  color: '색상',
+  processor: '프로세서',
+  storage: '저장장치',
+  memory: '메모리',
+};
+
+type FilterKeys = keyof typeof filterKeyMap;
 
 export type FilterProperty = {
   [key in FilterKeys]?: (string | number)[];

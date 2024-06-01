@@ -12,24 +12,27 @@ import {
   DialogFooter,
 } from '@/shared/components/shadcn/ui/dialog';
 import { useEffect, useState } from 'react';
-import { FilterProperty } from '../../api/getFilterProperty';
+import { FilterProperty, filterKeyMap } from '../../api/getFilterProperty';
 import { useGetProperty } from '../../hooks/useFilterProperty';
 import { useGetInitialProperty } from '../../hooks/useInitialProperty';
 import { ToggleGroup, ToggleGroupItem } from '@/shared/components/shadcn/ui/toggle-group';
 import { Text } from '@/shared/components/shadcn/Text';
 import { Label } from '@radix-ui/react-label';
+import { useRouter } from 'next/navigation';
+import queryString from 'query-string';
 
-export const Filter = ({ category }: { category: CategoryType }) => {
+export const Filter = ({ title, category }: { title: string; category: CategoryType }) => {
   const categoryName = categoryMap[category];
 
   const [initialFilters, setInitialFilters] = useState<FilterProperty>({});
   const [selectedFilters, setSelectedFilters] = useState<FilterProperty>({});
-  const { data: filterData, isLoading } = useGetProperty(category, selectedFilters);
-  const { data: initialData } = useGetInitialProperty(category);
+  const { data: filterData } = useGetProperty(category, selectedFilters);
+  const { data: initialData, isLoading } = useGetInitialProperty(category);
+  const router = useRouter();
 
   useEffect(() => {
     if (!isLoading && initialData) {
-      setInitialFilters(initialData?.data);
+      setInitialFilters(initialData.data);
     }
   }, [initialData, isLoading]);
 
@@ -54,7 +57,7 @@ export const Filter = ({ category }: { category: CategoryType }) => {
   const handleSubmitProperty = () => {
     // const serchUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}/search`;
 
-    // const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
+    const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
 
     // const url = `${serchUrl(category)}?${queryParams}`;
 
@@ -62,13 +65,14 @@ export const Filter = ({ category }: { category: CategoryType }) => {
 
     // console.log(response);
 
-    console.log(selectedFilters);
+    // console.log(selectedFilters);
+    router.push(`/products/${category}/search?${queryParams}`);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="my-4">상품 필터</Button>
+        <Button className="my-4">{title}</Button>
       </DialogTrigger>
       <DialogContent className="lg:max-w-[800px] max-h-[75vh] overflow-y-auto">
         <DialogHeader>
@@ -81,7 +85,7 @@ export const Filter = ({ category }: { category: CategoryType }) => {
             <div key={property}>
               <Label className="pl-1">
                 <Text typography="p" className="font-bold">
-                  {property}
+                  {filterKeyMap[property as keyof typeof filterKeyMap]}
                 </Text>
               </Label>
               <ToggleGroup variant="outline" type="single" className="flex flex-wrap justify-start">
@@ -94,7 +98,7 @@ export const Filter = ({ category }: { category: CategoryType }) => {
                     onClick={() => handleClickProperty(property as keyof FilterProperty, value)}
                     isChecked={selectedFilters[property as keyof FilterProperty]?.includes(value) || false}
                   >
-                    <Text typography="small">{value}</Text>
+                    <Text typography="small">{property === 'size' ? `${value}인치` : value}</Text>
                   </ToggleGroupItem>
                 ))}
               </ToggleGroup>

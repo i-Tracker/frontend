@@ -10,7 +10,7 @@ interface ProductItemProps {
   productItem: Macbook;
 }
 
-export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
+export const SearchResultItem = ({ productItem }: ProductItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
