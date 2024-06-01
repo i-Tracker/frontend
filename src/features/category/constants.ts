@@ -11,3 +11,5 @@ export const categoryMap = {
 export type CategoryType = keyof typeof categoryMap;
 
 export const categoryValues = Object.values(categoryMap);
+
+export type CategoryName = keyof typeof categoryValues;

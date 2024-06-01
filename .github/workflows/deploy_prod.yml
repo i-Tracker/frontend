@@ -2,7 +2,7 @@ name: Deploy
 on:
   pull_request:
     branches:
-      - prod
+      - dev
 
 env:
   S3_BUCKET_NAME: itracker-front
