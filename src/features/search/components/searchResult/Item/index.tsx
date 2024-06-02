@@ -16,7 +16,7 @@ export const SearchResultItem = ({ productItem }: ProductItemProps) => {
   return (
     <li className="w-full">
       <Link href="" className="flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center w-full h-full rounded-md">
+        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}

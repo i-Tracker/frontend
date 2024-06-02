@@ -74,7 +74,7 @@ export const Filter = ({ title, category }: { title: string; category: CategoryT
       <DialogTrigger asChild>
         <Button className="my-4">{title}</Button>
       </DialogTrigger>
-      <DialogContent className="lg:max-w-[800px] max-h-[75vh] overflow-y-auto">
+      <DialogContent className="lg:max-w-[800px] max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{categoryName} 상품 필터</DialogTitle>
           <DialogDescription>원하는 옵션을 선택 후 적용하기 버튼을 눌러주세요.</DialogDescription>
