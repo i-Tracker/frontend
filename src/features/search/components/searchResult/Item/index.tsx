@@ -34,7 +34,9 @@ export const SearchResultItem = ({ productItem }: ProductItemProps) => {
         </div>
         <div>
           <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">
-            <Text typography="small">{productItem.chip}</Text>
+            <Text typography="xsmall" className="text-center">
+              {productItem.chip}
+            </Text>
           </div>
           <div className="flex flex-col gap-1">
             <Text typography="small" className="font-bold">
