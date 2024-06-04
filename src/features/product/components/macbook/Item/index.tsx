@@ -2,6 +2,7 @@ import { categoryMap } from '@/features/category/constants';
 import { Macbook } from '@/features/product/api/getProductList';
 import { Triangle } from '@/shared/assets/Icons';
 import { Badge } from '@/shared/components/Badge';
+import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
@@ -60,19 +61,10 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
             </Text>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <div className="flex items-center justify-center bg-red-200 w-[45px] h-[20px] rounded gap-1 px-1">
-              {productItem.discountPercentage === 0 ? (
-                '-'
-              ) : (
-                <>
-                  <Triangle color="#DC2626" width={10} />
-                  <Text typography="xsmall" className="text-red-600 font-bold">
-                    {productItem.discountPercentage}%
-                  </Text>
-                </>
-              )}
-            </div>
-            <Text typography="h4">{convertToLocalFormat(productItem.currentPrice)}원</Text>
+            <DiscountBadge discountPercentage={productItem.discountPercentage} />
+            <Text typography="p" className="font-bold">
+              {convertToLocalFormat(productItem.currentPrice)}원
+            </Text>
           </div>
         </div>
       </Link>
