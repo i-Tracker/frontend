@@ -1,6 +1,5 @@
 import { categoryMap } from '@/features/category/constants';
 import { Macbook } from '@/features/product/api/getProductList';
-import { Triangle } from '@/shared/assets/Icons';
 import { Badge } from '@/shared/components/Badge';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
@@ -44,21 +43,11 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
             </Text>
           </div>
           <div className="flex flex-col gap-1">
-            <Text typography="small" className="font-bold">
-              {productItem.cpu}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.gpu}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.storage}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.memory}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.color}
-            </Text>
+            <Text typography="small">{productItem.cpu}</Text>
+            <Text typography="small">{productItem.gpu}</Text>
+            <Text typography="small">{productItem.storage}</Text>
+            <Text typography="small">{productItem.memory}</Text>
+            <Text typography="small">{productItem.color}</Text>
           </div>
           <div className="flex items-center gap-2 mt-4">
             <DiscountBadge discountPercentage={productItem.discountPercentage} />
