@@ -15,7 +15,7 @@ export const SearchResultItem = ({ productItem }: ProductItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
-    <li className="w-full">
+    <li className="w-full mb-5">
       <Link href="" className="flex flex-col gap-2 cursor-pointer">
         <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
           <Image
@@ -31,7 +31,7 @@ export const SearchResultItem = ({ productItem }: ProductItemProps) => {
           <Text typography="p" className="font-bold leading-none">
             {categoryName}
           </Text>
-          <Text typography="p">{productItem.title}</Text>
+          <Text typography="small">{productItem.title}</Text>
         </div>
         <div>
           <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">

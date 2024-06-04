@@ -14,7 +14,7 @@ export const SearchResultList = ({ category, params }: SearchResultProps) => {
   const { data: productData } = useGetSearchResult(category, params);
 
   return (
-    <div className="mx-auto">
+    <div>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-12 my-6">
         {productData?.data.map((productItem) => {
           return <SearchResultItem key={productItem.id} productItem={productItem} />;

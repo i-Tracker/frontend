@@ -31,7 +31,7 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
           <Text typography="p" className="font-bold leading-none">
             {categoryName}
           </Text>
-          <Text typography="p">{productItem.title}</Text>
+          <Text typography="small">{productItem.title}</Text>
         </div>
         <div>
           <div
