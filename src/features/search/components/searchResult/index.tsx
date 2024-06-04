@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 'use client';
 
 import { CategoryType } from '@/features/category/constants';
 import { useGetSearchResult } from '../../hooks/useSearchResult';
 import { FilterProperty } from '../../api/getFilterProperty';
 import { SearchResultItem } from './Item';
+import { Button } from '@/shared/components/shadcn/ui/button';
 
 interface SearchResultProps {
   category: CategoryType;
@@ -11,15 +13,25 @@ interface SearchResultProps {
 }
 
 export const SearchResultList = ({ category, params }: SearchResultProps) => {
-  const { data: productData } = useGetSearchResult(category, params);
+  const { data, hasNextPage, fetchNextPage } = useGetSearchResult(category, params);
+  const productData = data.pages.map((page) => page.data).flat();
+
+  const handleClickNextPage = () => {
+    fetchNextPage();
+  };
 
   return (
     <div>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-12 my-6">
-        {productData?.data.map((productItem) => {
+        {productData.map((productItem) => {
           return <SearchResultItem key={productItem.id} productItem={productItem} />;
         })}
       </ul>
+      {hasNextPage ? (
+        <Button className="w-full" onClick={handleClickNextPage}>
+          더보기
+        </Button>
+      ) : null}
     </div>
   );
 };

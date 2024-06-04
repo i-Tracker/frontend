@@ -21,7 +21,7 @@ import { Label } from '@radix-ui/react-label';
 import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
 
-export const Filter = ({ title, category }: { title: string; category: CategoryType }) => {
+export const Filter = ({ title, category, variant }: { title: string; category: CategoryType; variant: boolean }) => {
   const categoryName = categoryMap[category];
 
   const [initialFilters, setInitialFilters] = useState<FilterProperty>({});
@@ -72,7 +72,11 @@ export const Filter = ({ title, category }: { title: string; category: CategoryT
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="my-4">{title}</Button>
+        <Button className="my-4" variant={variant ? 'outline' : 'default'}>
+          <Text typography="xsmall" className="md:text-sm">
+            {title}
+          </Text>
+        </Button>
       </DialogTrigger>
       <DialogContent className="lg:max-w-[800px] max-h-[85vh] overflow-y-auto">
         <DialogHeader>

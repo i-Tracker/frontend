@@ -1,4 +1,4 @@
-import { useSuspenseQuery, UseSuspenseQueryResult } from '@tanstack/react-query';
+import { InfiniteData, useSuspenseInfiniteQuery, UseSuspenseInfiniteQueryResult } from '@tanstack/react-query';
 import { FilterProperty } from '../api/getFilterProperty';
 import { CategoryType } from '@/features/category/constants';
 import { getSearchResult, GetSearchResultResponse } from '../api/getSearchResult';
@@ -6,9 +6,11 @@ import { getSearchResult, GetSearchResultResponse } from '../api/getSearchResult
 export const useGetSearchResult = (
   category: CategoryType,
   property: FilterProperty,
-): UseSuspenseQueryResult<GetSearchResultResponse> => {
-  return useSuspenseQuery({
+): UseSuspenseInfiniteQueryResult<InfiniteData<GetSearchResultResponse>> => {
+  return useSuspenseInfiniteQuery({
     queryKey: ['search', category, property],
-    queryFn: () => getSearchResult(category, property),
+    queryFn: ({ pageParam }) => getSearchResult(category, property, pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => lastPage.pageInfo.currentPage + 1,
   });
 };
