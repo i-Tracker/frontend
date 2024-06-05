@@ -6,6 +6,7 @@ import { useGetSearchResult } from '../../hooks/useSearchResult';
 import { FilterProperty } from '../../api/getFilterProperty';
 import { SearchResultItem } from './Item';
 import { Button } from '@/shared/components/shadcn/ui/button';
+import { Text } from '@/shared/components/shadcn/Text';
 
 interface SearchResultProps {
   category: CategoryType;
@@ -33,7 +34,13 @@ export const SearchResultList = ({ category, params }: SearchResultProps) => {
         <Button className="w-full" onClick={handleClickNextPage}>
           더보기
         </Button>
-      ) : null}
+      ) : (
+        <div className="flex justify-center my-4">
+          <Text typography="xsmall" className="text-center">
+            마지막 페이지입니다.
+          </Text>
+        </div>
+      )}
     </div>
   );
 };
