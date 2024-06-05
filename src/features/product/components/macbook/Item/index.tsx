@@ -1,6 +1,7 @@
 import { categoryMap } from '@/features/category/constants';
 import { Macbook } from '@/features/product/api/getProductList';
 import { Badge } from '@/shared/components/Badge';
+import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
@@ -16,7 +17,7 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
   return (
     <li className="w-full">
       <Link href="" className="flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center w-full h-full rounded-md">
+        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
@@ -30,36 +31,29 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
           <Text typography="p" className="font-bold leading-none">
             {categoryName}
           </Text>
-          <Text typography="p">{productItem.title}</Text>
+          <Text typography="small">{productItem.title}</Text>
         </div>
         <div>
-          <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">
-            <Text typography="small">{productItem.chip}</Text>
+          <div
+            className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2"
+            style={{ whiteSpace: 'normal', overflow: 'hidden', textOverflow: 'ellipsis' }}
+          >
+            <Text typography="xsmall" className="text-center">
+              {productItem.chip}
+            </Text>
           </div>
           <div className="flex flex-col gap-1">
-            <Text typography="small" className="font-bold">
-              {productItem.cpu}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.gpu}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.storage}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.memory}
-            </Text>
-            <Text typography="small" className="font-bold">
-              {productItem.color}
-            </Text>
+            <Text typography="small">{productItem.cpu}</Text>
+            <Text typography="small">{productItem.gpu}</Text>
+            <Text typography="small">{productItem.storage}</Text>
+            <Text typography="small">{productItem.memory}</Text>
+            <Text typography="small">{productItem.color}</Text>
           </div>
           <div className="flex items-center gap-2 mt-4">
-            <div className="flex items-center justify-center bg-red-200 w-[30px] h-[20px] rounded">
-              <Text typography="xsmall" className="text-red-600 font-bold">
-                {productItem.discountPercentage}%
-              </Text>
-            </div>
-            <Text typography="h4">{convertToLocalFormat(productItem.currentPrice)}원</Text>
+            <DiscountBadge discountPercentage={productItem.discountPercentage} />
+            <Text typography="p" className="font-bold">
+              {convertToLocalFormat(productItem.currentPrice)}원
+            </Text>
           </div>
         </div>
       </Link>

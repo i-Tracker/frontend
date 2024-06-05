@@ -27,6 +27,7 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
       ref.current.scrollIntoView({ behavior: 'smooth' }); // 스무스 스크롤링 효과 추가
     }
   });
+
   return (
     <div className="flex-1 w-full flex flex-col py-10 border-gray-200 border-t-[1px]" ref={ref}>
       <div className="flex flex-wrap items-center">
@@ -45,7 +46,7 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
       <Suspense fallback={<div>불러오는 중;</div>}>
         <SearchResultList category={params.categoryName} params={filterProperty} />
       </Suspense>
-      <Filter title="필터 재설정" category={params.categoryName} />
+      <Filter title="필터 재설정" category={params.categoryName} variant={true} />
     </div>
   );
 }

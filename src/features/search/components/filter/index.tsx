@@ -21,8 +21,9 @@ import { Label } from '@radix-ui/react-label';
 import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
 
-export const Filter = ({ title, category }: { title: string; category: CategoryType }) => {
+export const Filter = ({ title, category, variant }: { title: string; category: CategoryType; variant: boolean }) => {
   const categoryName = categoryMap[category];
+  const [open, setOpen] = useState(false);
 
   const [initialFilters, setInitialFilters] = useState<FilterProperty>({});
   const [selectedFilters, setSelectedFilters] = useState<FilterProperty>({});
@@ -55,26 +56,21 @@ export const Filter = ({ title, category }: { title: string; category: CategoryT
   };
 
   const handleSubmitProperty = () => {
-    // const serchUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}/search`;
-
     const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
-
-    // const url = `${serchUrl(category)}?${queryParams}`;
-
-    // const response = await fetch(url).then((res) => res.json());
-
-    // console.log(response);
-
-    // console.log(selectedFilters);
+    setOpen(false);
     router.push(`/products/${category}/search?${queryParams}`);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="my-4">{title}</Button>
+        <Button className="my-4" variant={variant ? 'outline' : 'default'}>
+          <Text typography="xsmall" className="md:text-sm">
+            {title}
+          </Text>
+        </Button>
       </DialogTrigger>
-      <DialogContent className="lg:max-w-[800px] max-h-[75vh] overflow-y-auto">
+      <DialogContent className="lg:max-w-[800px] max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>{categoryName} 상품 필터</DialogTitle>
           <DialogDescription>원하는 옵션을 선택 후 적용하기 버튼을 눌러주세요.</DialogDescription>

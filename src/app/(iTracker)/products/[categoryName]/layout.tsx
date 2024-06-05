@@ -4,16 +4,6 @@ import { MacbookProductListSkeleton } from '@/features/product/components/macboo
 import { Text } from '@/shared/components/shadcn/Text';
 import React, { Suspense } from 'react';
 
-// export function generateStaticParams() {
-//   // const categoryData = await getCategoryList();
-
-//   const categories = ['macbook_air', 'macbook_pro'];
-
-//   return categories.map((category: string) => ({
-//     categoryName: category,
-//   }));
-// }
-
 export default function Layout({
   params,
   children,
@@ -24,8 +14,8 @@ export default function Layout({
   const categoryName = categoryMap[params.categoryName];
 
   return (
-    <div className="flex-1 w-full flex flex-col py-8">
-      <Text typography="h2" className="mb-8 text-center">
+    <div className="flex-1 w-full flex flex-col py-4">
+      <Text typography="h2" className="mb-6 text-center">
         {categoryName}
       </Text>
       <Text typography="h4">오늘의 할인율 TOP5</Text>
