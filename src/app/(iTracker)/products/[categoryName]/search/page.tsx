@@ -5,7 +5,6 @@ import { FilterProperty } from '@/features/search/api/getFilterProperty';
 import { Filter } from '@/features/search/components/filter';
 import { SearchResultList } from '@/features/search/components/searchResult';
 import { Text } from '@/shared/components/shadcn/Text';
-import { Button } from '@/shared/components/shadcn/ui/button';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef } from 'react';
 

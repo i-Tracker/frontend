@@ -23,6 +23,7 @@ import queryString from 'query-string';
 
 export const Filter = ({ title, category, variant }: { title: string; category: CategoryType; variant: boolean }) => {
   const categoryName = categoryMap[category];
+  const [open, setOpen] = useState(false);
 
   const [initialFilters, setInitialFilters] = useState<FilterProperty>({});
   const [selectedFilters, setSelectedFilters] = useState<FilterProperty>({});
@@ -55,22 +56,13 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
   };
 
   const handleSubmitProperty = () => {
-    // const serchUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}/search`;
-
     const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
-
-    // const url = `${serchUrl(category)}?${queryParams}`;
-
-    // const response = await fetch(url).then((res) => res.json());
-
-    // console.log(response);
-
-    // console.log(selectedFilters);
+    setOpen(false);
     router.push(`/products/${category}/search?${queryParams}`);
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="my-4" variant={variant ? 'outline' : 'default'}>
           <Text typography="xsmall" className="md:text-sm">
