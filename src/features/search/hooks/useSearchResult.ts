@@ -11,6 +11,12 @@ export const useGetSearchResult = (
     queryKey: ['search', category, property],
     queryFn: ({ pageParam }) => getSearchResult(category, property, pageParam),
     initialPageParam: 1,
-    getNextPageParam: (lastPage) => lastPage.pageInfo.currentPage + 1,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.pageInfo.lastPage === lastPage.pageInfo.currentPage) {
+        return undefined;
+      }
+
+      return lastPage.pageInfo.currentPage + 1;
+    },
   });
 };
