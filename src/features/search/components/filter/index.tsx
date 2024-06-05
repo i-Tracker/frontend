@@ -58,7 +58,7 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
   const handleSubmitProperty = () => {
     const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
     setOpen(false);
-    router.push(`/products/${category}/search?${queryParams}`);
+    router.push(`/category/${category}/search?${queryParams}`);
   };
 
   return (

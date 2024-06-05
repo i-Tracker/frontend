@@ -7,7 +7,7 @@ export const CategoryList = () => {
   const { data } = useGetCategoryList();
 
   return (
-    <div className="max-w-[1080px] mx-auto">
+    <div className="max-w-[1080px] mx-auto mb-12">
       <ul className="grid grid-cols-4 md:grid-cols-7 gap-4">
         {data?.categories.map((category) => {
           return <CategoryItem key={category} categoryItem={category} />;
