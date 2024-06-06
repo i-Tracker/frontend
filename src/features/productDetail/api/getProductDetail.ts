@@ -1,6 +1,10 @@
 import { Macbook } from '@/features/product/api/getProductList';
 
-export type GetProductDetailResponse = Macbook & ProductDetailInfo;
+export type GetProductDetailResponse = Macbook & ProductDetailInfo & CoupangUrl;
+
+export type CoupangUrl = {
+  coupangUrl: string;
+};
 
 export type ProductDetailInfo = {
   allTimeHighPrice: number;

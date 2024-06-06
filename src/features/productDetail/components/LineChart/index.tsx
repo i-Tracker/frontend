@@ -23,7 +23,7 @@ const LineChart = ({ priceInfos }: { priceInfos: { date: string; currentPrice: n
   };
 
   return (
-    <div className="w-full h-auto">
+    <div className="w-full h-auto my-24">
       <h1>Example 1: Line Chart</h1>
       <Line data={data} />
     </div>
