@@ -22,91 +22,99 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
     const data = (await response.json()) as GetProductDetailResponse;
 
     return (
-      <div className="my-8">
-        <div className="flex flex-col items-start justify-between md:flex-row md:items-center gap-4">
-          <div className="flex items-center">
-            <Image
-              src={data.imageUrl}
-              alt={data.title}
-              width={120}
-              height={120}
-              className="object-contain md:min-w-[300px] h-auto"
-            />
-
-            <div>
-              <div>
-                <Badge label={data.label} />
-                <Text typography="h4">{data.category}</Text>
-                <Text>{data.title}</Text>
+      <div>
+        <div className="my-8 w-full">
+          <div className="flex flex-col items-start md:flex-row md:items-center gap-12 md:gap-16">
+            <div className="flex items-center md:flex-col md:items-start gap-12 md:gap-4">
+              <div className="w-auto h-full rounded-md border-gray-200 border">
+                <Image
+                  src={data.imageUrl}
+                  alt={data.title}
+                  width={120}
+                  height={120}
+                  className="object-contain w-auto h-auto"
+                />
               </div>
 
-              <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">
-                <Text typography="xsmall" className="text-center">
-                  {data.chip}
-                </Text>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Text typography="small">{data.cpu}</Text>
-                <Text typography="small">{data.gpu}</Text>
-                <Text typography="small">{data.storage}</Text>
-                <Text typography="small">{data.memory}</Text>
-                <Text typography="small">{data.color}</Text>
-              </div>
-            </div>
-          </div>
+              <div className="w-full">
+                <div>
+                  <Badge label={data.label} />
+                  <Text typography="h4">{data.category}</Text>
+                  <Text>{data.title}</Text>
+                </div>
 
-          <div className="w-full">
-            <div className="flex items-end justify-between">
-              <div>
-                <Text typography="p" className="text-gray-500">
-                  현재가
-                </Text>
-                <Text typography="h4" className="leading-none">
-                  {convertToLocalFormat(Math.floor(data.currentPrice))}원
-                </Text>
-              </div>
-              <div className="flex items-center gap-2">
-                <Text typography="small" className="pt-1">
-                  전체 평균가 대비
-                </Text>
-                <DiscountBadge discountPercentage={data.discountPercentage} />
+                <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">
+                  <Text typography="xsmall" className="text-center">
+                    {data.chip}
+                  </Text>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <Text typography="small">{data.cpu}</Text>
+                  <Text typography="small">{data.gpu}</Text>
+                  <Text typography="small">{data.storage}</Text>
+                  <Text typography="small">{data.memory}</Text>
+                  <Text typography="small">{data.color}</Text>
+                </div>
               </div>
             </div>
 
-            <div className="flex h-10 items-center space-x-4 my-4">
-              <div>
-                <Text typography="small" className="text-gray-500">
-                  최저가
-                </Text>
-                <Text className="leading-none font-bold text-[#F45151]">
-                  {convertToLocalFormat(Math.floor(data.allTimeLowPrice))}원
-                </Text>
+            <div className="w-full">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-2">
+                  <Text typography="small" className="pt-1">
+                    전체 평균가 대비
+                  </Text>
+                  <DiscountBadge discountPercentage={data.discountPercentage} />
+                </div>
+                <div>
+                  <Text typography="p" className="text-gray-500">
+                    현재가
+                  </Text>
+                  <Text typography="h4" className="leading-none">
+                    {convertToLocalFormat(Math.floor(data.currentPrice))}원
+                  </Text>
+                </div>
               </div>
-              <Separator orientation="vertical" />
-              <div>
-                <Text typography="small" className="text-gray-500">
-                  평균가
-                </Text>
-                <Text className="leading-none font-bold">{convertToLocalFormat(Math.floor(data.averagePrice))}원</Text>
+
+              <div className="flex h-10 justify-between items-center md:justify-start md:space-x-16 my-8">
+                <div>
+                  <Text typography="small" className="text-gray-500">
+                    최저가
+                  </Text>
+                  <Text className="leading-none font-bold text-[#F45151]">
+                    {convertToLocalFormat(Math.floor(data.allTimeLowPrice))}원
+                  </Text>
+                </div>
+                <Separator orientation="vertical" />
+                <div>
+                  <Text typography="small" className="text-gray-500">
+                    평균가
+                  </Text>
+                  <Text className="leading-none font-bold">
+                    {convertToLocalFormat(Math.floor(data.averagePrice))}원
+                  </Text>
+                </div>
+                <Separator orientation="vertical" />
+                <div>
+                  <Text typography="small" className="text-gray-500">
+                    최고가
+                  </Text>
+                  <Text className="leading-none font-bold text-[#519CF4]">
+                    {convertToLocalFormat(Math.floor(data.allTimeHighPrice))}원
+                  </Text>
+                </div>
               </div>
-              <Separator orientation="vertical" />
-              <div>
-                <Text typography="small" className="text-gray-500">
-                  최고가
-                </Text>
-                <Text className="leading-none font-bold text-[#519CF4]">
-                  {convertToLocalFormat(Math.floor(data.allTimeHighPrice))}원
-                </Text>
-              </div>
+              <Suspense fallback={<div>표 불러오는 중</div>}>
+                <LineChart
+                  priceInfos={data.priceInfos}
+                  maxPrice={data.allTimeHighPrice}
+                  minPrice={data.allTimeLowPrice}
+                  averagePrice={data.averagePrice}
+                />
+              </Suspense>
             </div>
           </div>
         </div>
-        <Text typography="h3" className="mt-12">
-          그래프
-        </Text>
-        <Suspense fallback={<div>표 불러오는 중</div>}>
-          <LineChart priceInfos={data.priceInfos} />
-        </Suspense>
         <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} />
       </div>
     );

@@ -11,9 +11,9 @@ export const Header = () => {
         <Link href={getMainPageLink()}>
           <Logo />
         </Link>
-        <Button>
+        {/* <Button>
           <Text>로그인</Text>
-        </Button>
+        </Button> */}
       </nav>
     </header>
   );
