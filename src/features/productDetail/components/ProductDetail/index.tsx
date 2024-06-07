@@ -8,6 +8,7 @@ import { convertToLocalFormat } from '@/shared/utils';
 import { Badge } from '@/shared/components/Badge';
 import { Separator } from '@/shared/components/shadcn/ui/separator';
 import DiscountBadge from '@/shared/components/DiscountBadge';
+import { Suspense } from 'react';
 
 // server component
 
@@ -103,7 +104,9 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
         <Text typography="h3" className="mt-12">
           그래프
         </Text>
-        {data.priceInfos && <LineChart priceInfos={data.priceInfos} />}
+        <Suspense fallback={<div>표 불러오는 중</div>}>
+          <LineChart priceInfos={data.priceInfos} />
+        </Suspense>
         <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} />
       </div>
     );
