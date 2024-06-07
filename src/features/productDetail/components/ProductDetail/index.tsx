@@ -61,7 +61,7 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
                   현재가
                 </Text>
                 <Text typography="h4" className="leading-none">
-                  {convertToLocalFormat(Math.floor(data.allTimeHighPrice))}원
+                  {convertToLocalFormat(Math.floor(data.currentPrice))}원
                 </Text>
               </div>
               <div className="flex items-center gap-2">
