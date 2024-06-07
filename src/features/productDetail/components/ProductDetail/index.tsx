@@ -23,7 +23,7 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
 
     return (
       <div>
-        <div className="my-8 w-full">
+        <div className="mb-8 w-full">
           <div className="flex flex-col items-start md:flex-row md:items-center gap-12 md:gap-16">
             <div className="flex items-center md:flex-col md:items-start gap-12 md:gap-4">
               <div className="w-auto h-full rounded-md border-gray-200 border">
