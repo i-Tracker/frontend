@@ -43,7 +43,7 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
                   <Text>{data.title}</Text>
                 </div>
 
-                <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2">
+                <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2 mt-6">
                   <Text typography="xsmall" className="text-center">
                     {data.chip}
                   </Text>
@@ -105,12 +105,7 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
                 </div>
               </div>
               <Suspense fallback={<div>표 불러오는 중</div>}>
-                <LineChart
-                  priceInfos={data.priceInfos}
-                  maxPrice={data.allTimeHighPrice}
-                  minPrice={data.allTimeLowPrice}
-                  averagePrice={data.averagePrice}
-                />
+                <LineChart priceInfos={data.priceInfos} />
               </Suspense>
             </div>
           </div>

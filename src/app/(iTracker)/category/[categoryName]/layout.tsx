@@ -4,6 +4,7 @@ import { categoryMap, CategoryType } from '@/features/category/constants';
 import { MacbookProductList } from '@/features/product/components/macbook';
 import { MacbookProductListSkeleton } from '@/features/product/components/macbook/Skeleton';
 import { Text } from '@/shared/components/shadcn/Text';
+import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
 
 export default function Layout({
@@ -28,9 +29,11 @@ export default function Layout({
         <Text typography="p" className="md:text-lg text-gray-500">
           오늘 할인율이 가장 높은 상품리스트
         </Text>
-        <Suspense fallback={<MacbookProductListSkeleton />}>
-          <MacbookProductList category={params.categoryName} />
-        </Suspense>
+        <ErrorBoundary fallback={<div>제품 정보를 가져오지 못했습니다.</div>}>
+          <Suspense fallback={<MacbookProductListSkeleton />}>
+            <MacbookProductList category={params.categoryName} />
+          </Suspense>
+        </ErrorBoundary>
         {children}
       </div>
     </div>

@@ -33,9 +33,13 @@ export type Macbook = Product & {
 export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}`;
 
 export const getProductList = async (category: CategoryType): Promise<GetProductListResponse> => {
-  const response = await fetch(getProductListUrl(category));
+  try {
+    const response = await fetch(getProductListUrl(category));
 
-  const data: GetProductListResponse = (await response.json()) as GetProductListResponse;
+    const data: GetProductListResponse = (await response.json()) as GetProductListResponse;
 
-  return data;
+    return data;
+  } catch {
+    throw new Error('상품을 불러오지 못했습니다.');
+  }
 };

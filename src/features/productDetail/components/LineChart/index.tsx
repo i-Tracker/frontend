@@ -13,45 +13,12 @@ const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
 
 interface LineChartProps {
   priceInfos: { date: string; currentPrice: number }[];
-  maxPrice: number;
-  minPrice: number;
-  averagePrice: number;
 }
 
-const LineChart = ({ priceInfos, maxPrice, minPrice, averagePrice }: LineChartProps) => {
+const LineChart = ({ priceInfos }: LineChartProps) => {
   useEffect(() => {
     setupChart();
   }, []);
-
-  const options = {
-    plugins: {
-      annotation: {
-        annotations: {
-          line1: {
-            type: 'line',
-            yMin: averagePrice,
-            yMax: averagePrice,
-            borderColor: 'rgb(255, 99, 132)',
-            borderWidth: 2,
-          },
-          label1: {
-            type: 'line',
-            yMin: maxPrice,
-            yMax: maxPrice,
-            borderColor: '#519CF4',
-            borderWidth: 2,
-          },
-          label2: {
-            type: 'line',
-            yMin: minPrice,
-            yMax: minPrice,
-            borderColor: '#F45151',
-            borderWidth: 2,
-          },
-        },
-      },
-    },
-  };
 
   const data = {
     labels: priceInfos.map((info) => info.date),
@@ -70,7 +37,7 @@ const LineChart = ({ priceInfos, maxPrice, minPrice, averagePrice }: LineChartPr
   return (
     <div className="w-full max-h-[360px] h-auto my-12">
       <Text typography="h4">가격 변동 추이</Text>
-      <Line data={data} options={options} />
+      <Line data={data} />
     </div>
   );
 };
