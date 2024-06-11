@@ -4,6 +4,7 @@ import { CategoryType, categoryMap } from '@/features/category/constants';
 import { FilterProperty } from '@/features/search/api/getFilterProperty';
 import { Filter } from '@/features/search/components/filter';
 import { SearchResultList } from '@/features/search/components/searchResult';
+import { ProductListSkeleton } from '@/features/search/components/searchResult/Skeleton';
 import { Text } from '@/shared/components/shadcn/Text';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef } from 'react';
@@ -43,7 +44,7 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
         })}
         <Text className="my-2">에 대한 필터링 결과입니다.</Text>
       </div>
-      <Suspense fallback={<div>불러오는 중;</div>}>
+      <Suspense fallback={<ProductListSkeleton />}>
         <SearchResultList category={params.categoryName} params={filterProperty} />
       </Suspense>
       <Filter title="필터 재설정" category={params.categoryName} variant={true} />
