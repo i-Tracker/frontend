@@ -27,7 +27,11 @@ export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
           />
         </div>
         <div className="mb-2">
-          <Badge label={productItem.label} />
+          {productItem.label === true ? (
+            <Badge label={'역대 최저가'} />
+          ) : (
+            <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
+          )}
           <Text typography="p" className="font-bold leading-none">
             {categoryName}
           </Text>

@@ -16,7 +16,7 @@ export type Product = {
   size: number;
   discountPercentage: number;
   currentPrice: number;
-  label: string;
+  label: boolean;
   imageUrl: string;
   isOutOfStock: boolean;
 };
