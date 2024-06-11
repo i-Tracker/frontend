@@ -38,7 +38,11 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
 
               <div className="w-full">
                 <div>
-                  <Badge label={data.label} />
+                  {data.label === true ? (
+                    <Badge label={'역대 최저가'} />
+                  ) : (
+                    <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
+                  )}
                   <Text typography="h4">{data.category}</Text>
                   <Text>{data.title}</Text>
                 </div>
