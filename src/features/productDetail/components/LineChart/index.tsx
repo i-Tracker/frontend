@@ -1,44 +1,26 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import 'chart.js/auto';
-import { Text } from '@/shared/components/shadcn/Text';
-import 'chart.js/auto';
-import { setupChart } from '@/shared/utils/chartSetup';
-import { useEffect } from 'react';
+import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip, YAxis, Legend } from 'recharts';
 
-const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
-  ssr: false,
-});
-
-interface LineChartProps {
+interface PriceChartProps {
   priceInfos: { date: string; currentPrice: number }[];
 }
 
-const LineChart = ({ priceInfos }: LineChartProps) => {
-  useEffect(() => {
-    setupChart();
-  }, []);
-
-  const data = {
-    labels: priceInfos.map((info) => info.date),
-    datasets: [
-      {
-        label: '날짜별 금액',
-        data: priceInfos.map((info) => info.currentPrice),
-        fill: false,
-        borderColor: 'rgb(236, 103, 73)',
-        tension: 0.1,
-        stepped: false,
-      },
-    ],
-  };
-
+const PriceChart = ({ priceInfos }: PriceChartProps) => {
   return (
-    <div className="w-full max-h-[360px] h-auto my-12">
-      <Text typography="h4">가격 변동 추이</Text>
-      <Line data={data} />
+    <div className="w-[100%] h-[200px]">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={priceInfos} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="currentPrice" stroke="#8884d8" activeDot={{ r: 8 }} />
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };
-export default LineChart;
+
+export default PriceChart;

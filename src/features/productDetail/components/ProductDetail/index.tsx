@@ -1,5 +1,4 @@
 import { Text } from '@/shared/components/shadcn/Text';
-import LineChart from '../LineChart';
 import { API_BASE_URL } from '@/shared/api/constants';
 import { GetProductDetailResponse } from '../../api/getProductDetail';
 import Image from 'next/image';
@@ -9,6 +8,7 @@ import { Badge } from '@/shared/components/Badge';
 import { Separator } from '@/shared/components/shadcn/ui/separator';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Suspense } from 'react';
+import PriceChart from '../LineChart';
 
 // server component
 
@@ -108,8 +108,8 @@ export const ProductDetail = async ({ productId }: { productId: number }) => {
                   </Text>
                 </div>
               </div>
-              <Suspense fallback={<div>표 불러오는 중</div>}>
-                <LineChart priceInfos={data.priceInfos} />
+              <Suspense>
+                <PriceChart priceInfos={data.priceInfos} />
               </Suspense>
             </div>
           </div>
