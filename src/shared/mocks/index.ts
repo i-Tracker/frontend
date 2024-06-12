@@ -6,6 +6,6 @@ export const initMocking = async () => {
   } else {
     const { worker } = await import('./browser');
 
-    worker.start({ onUnhandledRequest: 'bypass' });
+    await worker.start({ onUnhandledRequest: 'bypass' });
   }
 };
