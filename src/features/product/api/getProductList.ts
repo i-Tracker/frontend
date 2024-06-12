@@ -30,6 +30,12 @@ export type Macbook = Product & {
   color: string;
 };
 
+export type Airpods = Product & {
+  chargingType: string;
+  canWirelessCharging: boolean;
+  generation: number;
+};
+
 export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/v1/products/${category}`;
 
 export const getProductList = async (category: CategoryType): Promise<GetProductListResponse> => {

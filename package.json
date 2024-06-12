@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:mocking": "NEXT_PUBLIC_MOCKING=true next dev",
+    "dev:prod": "NEXT_PUBLIC_MOCKING=false next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

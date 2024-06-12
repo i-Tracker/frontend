@@ -1,10 +1,10 @@
-import { Macbook } from '@/features/product/api/getProductList';
+import { Airpods, Macbook } from '@/features/product/api/getProductList';
 import { API_BASE_URL } from '@/shared/api/constants';
 import queryString from 'query-string';
 import { FilterProperty } from './getFilterProperty';
 
 export type GetSearchResultResponse = {
-  data: Macbook[];
+  data: Airpods[] | Macbook[];
   pageInfo: {
     currentPage: number;
     lastPage: number;

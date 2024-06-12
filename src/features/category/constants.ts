@@ -6,6 +6,8 @@ export const categoryMap = {
   airpods: 'AirPods',
   apple_watch: 'Watch',
   i_pad: 'iPad',
+  airpods_max: 'Airpods Max',
+  airpods_pro: 'Airpods Pro',
 } as const;
 
 export type CategoryType = keyof typeof categoryMap;

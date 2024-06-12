@@ -25,15 +25,19 @@ export default function Layout({
         <Text typography="h2" className="mb-6 text-center">
           {categoryName}
         </Text>
-        <Text typography="h4">오늘의 할인율 TOP5</Text>
-        <Text typography="p" className="md:text-lg text-gray-500">
-          오늘 할인율이 가장 높은 상품리스트
-        </Text>
-        <ErrorBoundary fallback={<div>제품 정보를 가져오지 못했습니다.</div>}>
-          <Suspense fallback={<MacbookProductListSkeleton />}>
-            <MacbookProductList category={params.categoryName} />
-          </Suspense>
-        </ErrorBoundary>
+        {categoryName === 'MacBook Air' || categoryName === 'MacBook Pro' ? (
+          <>
+            <Text typography="h4">오늘의 할인율 TOP5</Text>
+            <Text typography="p" className="md:text-lg text-gray-500">
+              오늘 할인율이 가장 높은 상품리스트
+            </Text>
+            <ErrorBoundary fallback={<div>제품 정보를 가져오지 못했습니다.</div>}>
+              <Suspense fallback={<MacbookProductListSkeleton />}>
+                <MacbookProductList category={params.categoryName} />
+              </Suspense>
+            </ErrorBoundary>
+          </>
+        ) : null}
         {children}
       </div>
     </div>

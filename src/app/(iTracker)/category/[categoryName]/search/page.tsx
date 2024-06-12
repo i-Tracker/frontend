@@ -10,7 +10,6 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef } from 'react';
 
 export default function SearchResult({ params }: { params: { categoryName: CategoryType } }) {
-  // 백엔드에 검색결과 api 요청
   const categoryName = categoryMap[params.categoryName];
   const searchParams = useSearchParams();
   const filterProperty = Array.from(searchParams.entries()).reduce<FilterProperty>((acc, [property, value]) => {
@@ -47,7 +46,9 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
       <Suspense fallback={<ProductListSkeleton />}>
         <SearchResultList category={params.categoryName} params={filterProperty} />
       </Suspense>
-      <Filter title="필터 재설정" category={params.categoryName} variant={true} />
+      {!(categoryName === 'AirPods') ? (
+        <Filter title="필터 재설정" category={params.categoryName} variant={true} />
+      ) : null}
     </div>
   );
 }
