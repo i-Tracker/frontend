@@ -3,6 +3,7 @@ import { Macbook } from '@/features/product/api/getProductList';
 import { Badge } from '@/shared/components/Badge';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
+import { disabledStyles } from '@/shared/styles';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,7 +17,7 @@ export const MacbookProductListItem = ({ productItem, rank }: ProductItemProps) 
   const categoryName = categoryMap[productItem.category];
 
   return (
-    <li className="w-full">
+    <li className={`w-full ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
         <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border relative">
           <div className="absolute top-0 left-0 bg-blue-500 text-white py-1 px-2 text-xs font-bold rounded-tl">
@@ -29,6 +30,13 @@ export const MacbookProductListItem = ({ productItem, rank }: ProductItemProps) 
             height={120}
             className="object-contain w-[120px] h-auto"
           />
+          {productItem.isOutOfStock && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <Text typography="p" className="text-white">
+                현재 품절 상태입니다
+              </Text>
+            </div>
+          )}
         </div>
         <div className="mb-2">
           {productItem.label === true ? (

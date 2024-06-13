@@ -3,6 +3,7 @@ import { Macbook } from '@/features/product/api/getProductList';
 import { Badge } from '@/shared/components/Badge';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
+import { disabledStyles } from '@/shared/styles';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +16,7 @@ export const MacbookSearchItem = ({ productItem }: MacbookSearchItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
-    <li className="w-full mb-5">
+    <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
         <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
           <Image
