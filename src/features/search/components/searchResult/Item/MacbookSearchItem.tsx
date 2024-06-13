@@ -18,7 +18,7 @@ export const MacbookSearchItem = ({ productItem }: MacbookSearchItemProps) => {
   return (
     <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
+        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border relative">
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
@@ -26,7 +26,15 @@ export const MacbookSearchItem = ({ productItem }: MacbookSearchItemProps) => {
             height={120}
             className="object-contain w-[120px] h-auto"
           />
+          {productItem.isOutOfStock && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <Text typography="p" className="text-white">
+                현재 품절 상태입니다
+              </Text>
+            </div>
+          )}
         </div>
+
         <div className="mb-2">
           {productItem.label === true ? (
             <Badge label={'역대 최저가'} />
