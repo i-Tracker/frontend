@@ -9,15 +9,19 @@ import Link from 'next/link';
 
 interface ProductItemProps {
   productItem: Macbook;
+  rank: number;
 }
 
-export const MacbookProductListItem = ({ productItem }: ProductItemProps) => {
+export const MacbookProductListItem = ({ productItem, rank }: ProductItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
     <li className="w-full">
       <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
-        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
+        <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border relative">
+          <div className="absolute top-0 left-0 bg-blue-500 text-white py-1 px-2 text-xs font-bold rounded-tl">
+            {rank + 1}위
+          </div>
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
