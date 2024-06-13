@@ -14,7 +14,6 @@ import { CategoryType } from '@/features/category/constants';
 // server component
 
 export const ProductDetail = async ({ productId, category }: { productId: number; category: CategoryType }) => {
-  console.log(category);
   try {
     const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`);
     if (!response.ok) {
@@ -111,7 +110,14 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                 </div>
               </div>
               <Suspense>
-                <PriceChart priceInfos={data.priceInfos} />
+                <div className="max-w-[550px] h-[200px]">
+                  <PriceChart
+                    priceInfos={data.priceInfos}
+                    averagePrice={data.averagePrice}
+                    allTimeHighPrice={data.allTimeHighPrice}
+                    allTimeLowPrice={data.allTimeLowPrice}
+                  />
+                </div>
               </Suspense>
             </div>
           </div>
