@@ -12,19 +12,23 @@ import { Suspense, useEffect, useRef } from 'react';
 export default function SearchResult({ params }: { params: { categoryName: CategoryType } }) {
   const categoryName = categoryMap[params.categoryName];
   const searchParams = useSearchParams();
-  const filterProperty = Array.from(searchParams.entries()).reduce<FilterProperty>((acc, [property, value]) => {
+  const sortedProperty = Array.from(searchParams.entries()).sort(([a], [b]) => {
+    const order = ['size', 'color', 'processor', 'storage', 'memory'];
+    return order.indexOf(a) - order.indexOf(b);
+  });
+
+  const filterProperty = [...sortedProperty].reduce<FilterProperty>((acc, [property, value]) => {
     const key = property as keyof FilterProperty;
     acc[key] = acc[key] || [];
     acc[key]?.push(value);
-
     return acc;
   }, {});
 
-  const ref = useRef<HTMLDivElement>(null); // ref 타입을 HTMLDivElement로 명시
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' }); // 스무스 스크롤링 효과 추가
+      ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   });
 
@@ -34,7 +38,7 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
         <Text typography="h3" className="inline-block mr-4">
           {categoryName}
         </Text>
-        {Array.from(searchParams.entries()).map(([property, value]) => {
+        {sortedProperty.map(([property, value]) => {
           return (
             <div key={value} className="bg-primary rounded inline mr-1 text-white px-2 py-1 text-sm">
               {property === 'size' ? `${value}인치` : value}
