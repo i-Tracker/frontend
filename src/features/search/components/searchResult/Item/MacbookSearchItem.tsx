@@ -45,7 +45,9 @@ export const MacbookSearchItem = ({ productItem }: MacbookSearchItemProps) => {
           {productItem.label === true ? (
             <Badge label={'역대 최저가'} />
           ) : (
-            <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
+            <div className="inline-flex py-1 px-2 mt-2 mb-2">
+              <div className="h-[12px]"></div>
+            </div>
           )}
           <Text typography="p" className="font-bold leading-none">
             {categoryName}
