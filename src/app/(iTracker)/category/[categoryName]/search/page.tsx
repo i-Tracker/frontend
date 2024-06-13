@@ -13,10 +13,10 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
   const categoryName = categoryMap[params.categoryName];
   const searchParams = useSearchParams();
   const filterProperty = Array.from(searchParams.entries()).reduce<FilterProperty>((acc, [property, value]) => {
-    if (!acc[property as keyof FilterProperty]) {
-      acc[property as keyof FilterProperty] = [];
-    }
-    (acc[property as keyof FilterProperty] as string[]).push(value);
+    const key = property as keyof FilterProperty;
+    acc[key] = acc[key] || [];
+    acc[key]?.push(value);
+
     return acc;
   }, {});
 
@@ -31,14 +31,14 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
   return (
     <div className="flex-1 w-full flex flex-col py-10 border-gray-200 border-t-[1px]" ref={ref}>
       <div className="flex flex-wrap items-center">
-        <Text typography="h4" className="inline-block mr-1">
+        <Text typography="h3" className="inline-block mr-4">
           {categoryName}
         </Text>
         {Array.from(searchParams.entries()).map(([property, value]) => {
           return (
-            <Text typography="h4" key={value} className="inline mr-1">
+            <div key={value} className="bg-primary rounded inline mr-1 text-white px-2 py-1 text-sm">
               {property === 'size' ? `${value}인치` : value}
-            </Text>
+            </div>
           );
         })}
         <Text className="my-2">에 대한 필터링 결과입니다.</Text>
