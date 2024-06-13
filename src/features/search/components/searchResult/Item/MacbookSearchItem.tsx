@@ -14,10 +14,16 @@ interface MacbookSearchItemProps {
 
 export const MacbookSearchItem = ({ productItem }: MacbookSearchItemProps) => {
   const categoryName = categoryMap[productItem.category];
+  const getProductDetailUrl = (macbookType: string) => {
+    return macbookType === 'macbook_air' ? `/products/macbook_air` : `/products/macbook_pro`;
+  };
 
   return (
     <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
-      <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
+      <Link
+        href={`${getProductDetailUrl(productItem.category)}/${productItem.id}`}
+        className="flex flex-col gap-2 cursor-pointer"
+      >
         <div className="flex items-center justify-center w-auto h-full rounded-md border-gray-200 border relative">
           <Image
             src={productItem.imageUrl}

@@ -9,12 +9,14 @@ import { Separator } from '@/shared/components/shadcn/ui/separator';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Suspense } from 'react';
 import PriceChart from '../LineChart';
+import { CategoryType } from '@/features/category/constants';
 
 // server component
 
-export const ProductDetail = async ({ productId }: { productId: number }) => {
+export const ProductDetail = async ({ productId, category }: { productId: number; category: CategoryType }) => {
+  console.log(category);
   try {
-    const response = await fetch(`${API_BASE_URL}/api/v1/products/macbook_pro/${productId}`);
+    const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`);
     if (!response.ok) {
       throw new Error(`서버에서 데이터를 가져오는 데 실패했습니다. 상태 코드: ${response.status}`);
     }

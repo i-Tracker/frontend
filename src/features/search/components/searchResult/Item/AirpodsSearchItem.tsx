@@ -17,7 +17,7 @@ export const AirpodsSearchItem = ({ productItem }: AirpodsSearchItemProps) => {
 
   return (
     <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
-      <Link href={`/products/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
+      <Link href={`/products/airpods/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
         <div className="relative flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
           <Image
             src={productItem.imageUrl}
