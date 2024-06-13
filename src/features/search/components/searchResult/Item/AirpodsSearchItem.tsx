@@ -24,7 +24,7 @@ export const AirpodsSearchItem = ({ productItem }: AirpodsSearchItemProps) => {
             alt={productItem.title}
             width={120}
             height={120}
-            className="object-contain w-[120px] h-auto"
+            className="object-contain w-[120px] h-auto py-4"
           />
           {productItem.isOutOfStock && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
