@@ -110,7 +110,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                 </div>
               </div>
               <Suspense>
-                <div className="max-w-[550px] h-[200px]">
+                <div className="max-w-[550px] h-[200px] my-10">
                   <PriceChart
                     priceInfos={data.priceInfos}
                     averagePrice={data.averagePrice}

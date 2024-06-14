@@ -27,11 +27,15 @@ const PriceChart = ({ priceInfos, allTimeHighPrice, allTimeLowPrice, averagePric
     return `${convertToLocalFormat(yTick)}`;
   };
 
+  const formatXAxis = (xTick: string) => {
+    return `${xTick.substring(5, 7)}월 ${xTick.substring(8, 10)}일`;
+  };
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart data={priceInfos} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis type="category" dataKey="date" />
+        <XAxis type="category" dataKey="date" tickFormatter={formatXAxis} />
         <YAxis domain={['dataMin', 'dataMax']} padding={{ top: 24, bottom: 24 }} tickFormatter={formatYAxis} />
         <Tooltip content={<CustomTooltip />} />
         <Legend />
