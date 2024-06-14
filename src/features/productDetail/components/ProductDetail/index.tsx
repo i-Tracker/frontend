@@ -22,6 +22,8 @@ export const ProductDetail = async ({ productId, category }: { productId: number
 
     const data = (await response.json()) as GetProductDetailResponse;
 
+    const isMacbook = category === 'macbook_air' || category === 'macbook_pro';
+
     return (
       <div>
         <div className="mb-8 w-full">
@@ -33,7 +35,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   alt={data.title}
                   width={120}
                   height={120}
-                  className="object-contain w-auto h-auto"
+                  className="object-contain w-auto h-auto p-4"
                 />
               </div>
 
@@ -48,18 +50,24 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   <Text>{data.title}</Text>
                 </div>
 
-                <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2 mt-6">
-                  <Text typography="xsmall" className="text-center">
-                    {data.chip}
-                  </Text>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <Text typography="small">{data.cpu}</Text>
-                  <Text typography="small">{data.gpu}</Text>
-                  <Text typography="small">{data.storage}</Text>
-                  <Text typography="small">{data.memory}</Text>
+                {isMacbook ? (
+                  <>
+                    <div className="flex items-center justify-center bg-slate-950 rounded-md w-[35px] h-[35px] text-white my-2 mt-6">
+                      <Text typography="xsmall" className="text-center">
+                        {data.chip}
+                      </Text>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <Text typography="small">{data.cpu}</Text>
+                      <Text typography="small">{data.gpu}</Text>
+                      <Text typography="small">{data.storage}</Text>
+                      <Text typography="small">{data.memory}</Text>
+                      <Text typography="small">{data.color}</Text>
+                    </div>
+                  </>
+                ) : (
                   <Text typography="small">{data.color}</Text>
-                </div>
+                )}
               </div>
             </div>
 
@@ -110,7 +118,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                 </div>
               </div>
               <Suspense>
-                <div className="max-w-[550px] h-[200px] my-10">
+                <div className="max-w-[780px] h-[200px] my-10 mx-auto md:mx-0">
                   <PriceChart
                     priceInfos={data.priceInfos}
                     averagePrice={data.averagePrice}
@@ -120,6 +128,14 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                 </div>
               </Suspense>
             </div>
+          </div>
+          <div className="mt-12 mb-24">
+            <Text typography="small" className="text-[12px] block text-center md:text-end">
+              이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+            </Text>
+            <Text className="text-[10px] block text-center md:text-end">
+              * 쿠팡 정보와 동일하지 않을 수 있으니 쿠팡에서 가격을 직접 확인 후 이용바랍니다.
+            </Text>
           </div>
         </div>
         <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} />
