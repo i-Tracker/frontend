@@ -24,7 +24,7 @@ export const getSearchResult = async (
 
   const url = `${getSearchResultUrl(category)}?${queryParams}&${pageParams}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: 'no-store' });
 
   const data = (await response.json()) as GetSearchResultResponse;
 

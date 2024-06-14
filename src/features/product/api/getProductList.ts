@@ -40,7 +40,7 @@ export const getProductListUrl = (category: string) => `${API_BASE_URL}/api/v1/p
 
 export const getProductList = async (category: CategoryType): Promise<GetProductListResponse> => {
   try {
-    const response = await fetch(getProductListUrl(category));
+    const response = await fetch(getProductListUrl(category), { cache: 'no-store' });
 
     const data: GetProductListResponse = (await response.json()) as GetProductListResponse;
 

@@ -15,7 +15,7 @@ import { CategoryType } from '@/features/category/constants';
 
 export const ProductDetail = async ({ productId, category }: { productId: number; category: CategoryType }) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`);
+    const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`, { cache: 'no-store' });
     if (!response.ok) {
       throw new Error(`서버에서 데이터를 가져오는 데 실패했습니다. 상태 코드: ${response.status}`);
     }
