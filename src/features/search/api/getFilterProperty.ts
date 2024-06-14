@@ -25,12 +25,17 @@ export const getFilterProperty = async (
   category: string,
   property: FilterProperty,
 ): Promise<GetFilterPropertyResponse> => {
-  const queryParams = queryString.stringify(property, { arrayFormat: 'comma' });
+  try {
+    const queryParams = queryString.stringify(property, { arrayFormat: 'comma' });
 
-  const url = `${getFilterPropertyUrl(category)}?${queryParams}`;
+    const url = `${getFilterPropertyUrl(category)}?${queryParams}`;
 
-  const response = await fetch(url);
+    const response = await fetch(url);
 
-  const data = (await response.json()) as GetFilterPropertyResponse;
-  return data;
+    const data = (await response.json()) as GetFilterPropertyResponse;
+
+    return data;
+  } catch {
+    throw new Error('필터 정보를 받아오지 못했습니다.');
+  }
 };

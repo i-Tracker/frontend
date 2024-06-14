@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { GetFilterPropertyResponse, getFilterProperty, FilterProperty } from '../api/getFilterProperty';
 import { CategoryType } from '@/features/category/constants';
 

@@ -31,7 +31,7 @@ export const GET_MOCK_MACBOOK_AIR_LIST = {
         storage: '1TB SSD 저장 장치',
         memory: '32GB 통합 메모리',
         color: '스페이스 그레이',
-        label: '역대 최저가',
+        label: true,
         imageUrl:
           'https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/3673409313220944-5a884691-bcaf-4fa6-a04d-8873f30865af.jpg',
         isOutOfStock: false,
@@ -49,7 +49,7 @@ export const GET_MOCK_MACBOOK_AIR_LIST = {
         storage: '512GB SSD 저장 장치',
         memory: '16GB 통합 메모리',
         color: '골드',
-        label: '역대 최저가',
+        label: true,
         imageUrl:
           'https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/3673409313220944-5a884691-bcaf-4fa6-a04d-8873f30865af.jpg',
         isOutOfStock: false,
@@ -103,7 +103,7 @@ export const GET_MOCK_MACBOOK_AIR_LIST = {
         storage: '1TB SSD 저장 장치',
         memory: '32GB 통합 메모리',
         color: '스페이스 그레이',
-        label: '역대 최저가',
+        label: true,
         imageUrl:
           'https://thumbnail6.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/3673409313220944-5a884691-bcaf-4fa6-a04d-8873f30865af.jpg',
         isOutOfStock: false,

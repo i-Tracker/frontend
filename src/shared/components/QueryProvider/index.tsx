@@ -15,6 +15,7 @@ export const QueryProvider = ({ children }: Props) => {
         defaultOptions: {
           queries: {
             staleTime: 1000 * 60, // 1분
+            retry: 2,
           },
         },
       }),

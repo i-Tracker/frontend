@@ -27,7 +27,7 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
 
   const [initialFilters, setInitialFilters] = useState<FilterProperty>({});
   const [selectedFilters, setSelectedFilters] = useState<FilterProperty>({});
-  const { data: filterData } = useGetProperty(category, selectedFilters);
+  const { data: filterData, isError } = useGetProperty(category, selectedFilters);
   const { data: initialData, isLoading } = useGetInitialProperty(category);
   const router = useRouter();
 
@@ -36,6 +36,10 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
       setInitialFilters(initialData.data);
     }
   }, [initialData, isLoading]);
+
+  if (isError) {
+    return <div>제품정보를 받아오지 못했습니다.</div>;
+  }
 
   const initializeProperty = () => {
     if (initialData) {
@@ -58,7 +62,7 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
   const handleSubmitProperty = () => {
     const queryParams = queryString.stringify(selectedFilters, { arrayFormat: 'comma' });
     setOpen(false);
-    router.push(`/products/${category}/search?${queryParams}`);
+    router.push(`/category/${category}/search?${queryParams}`);
   };
 
   return (
