@@ -22,10 +22,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!process.env.NEXT_PUBLIC_GA_ID) {
+    console.log('need GA ID');
+  }
+
   return (
     <html lang="ko">
       <body className={roboto.className}>
-        {process.env.NEXT_PUBLIC_GA_ID ? <GoogleAnalytics /> : <div>need GA env</div>}
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
         <MSWProvider>
           <QueryProvider>{children}</QueryProvider>
         </MSWProvider>
