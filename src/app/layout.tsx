@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 import { QueryProvider } from '@/shared/components/QueryProvider';
 import { MSWProvider } from '@/shared/components/MSWProvider';
+import GoogleAnalytics from '@/shared/components/GoogleAnalytics';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -13,7 +14,7 @@ const roboto = Roboto({
 
 export const metadata: Metadata = {
   title: 'iTracker',
-  description: '애플 제품에 대한 쿠팡 할인 가격 변동 정보를 제공합니다.',
+  description: '애플 제품에 대한 쿠팡 가격 변동 정보를 제공합니다.',
 };
 
 export default function RootLayout({
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={roboto.className}>
+        {process.env.NEXT_PUBLIC_GA_ID ? <GoogleAnalytics /> : <div>need GA env</div>}
         <MSWProvider>
           <QueryProvider>{children}</QueryProvider>
         </MSWProvider>
