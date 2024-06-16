@@ -26,6 +26,7 @@ jobs:
       - name: Generate Environment Variables File
         run: |
           echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> .env.local
+          echo "NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}" >> .env.local
 
       - name: Cache yarn
         uses: actions/cache@v3

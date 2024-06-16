@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "deploy": "pm2 start ecosystem.config.js --env production"
+    "deploy": "pm2 reload ecosystem.config.js --env production"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/gtag.js": "^0.0.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
