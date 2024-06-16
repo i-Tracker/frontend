@@ -6,6 +6,22 @@ import { MacbookProductListSkeleton } from '@/features/product/components/macboo
 import { Text } from '@/shared/components/shadcn/Text';
 import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
+import { Metadata } from 'next';
+import { getMetadata } from '@/shared/utils/metadata';
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { categoryName: CategoryType };
+  // eslint-disable-next-line @typescript-eslint/require-await
+}): Promise<Metadata> => {
+  const categoryName = categoryMap[params.categoryName];
+
+  return getMetadata({
+    title: `iTracker | ${categoryName}`,
+    asPath: `/category/${categoryName}`,
+  });
+};
 
 export default function Layout({
   params,
