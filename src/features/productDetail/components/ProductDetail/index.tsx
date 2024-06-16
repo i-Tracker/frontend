@@ -9,11 +9,13 @@ import { Separator } from '@/shared/components/shadcn/ui/separator';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Suspense } from 'react';
 import PriceChart from '../LineChart';
-import { CategoryType } from '@/features/category/constants';
+import { CategoryType, categoryMap } from '@/features/category/constants';
 
 // server component
 
 export const ProductDetail = async ({ productId, category }: { productId: number; category: CategoryType }) => {
+  const categoryName = categoryMap[category];
+
   try {
     const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`, { cache: 'no-store' });
     if (!response.ok) {
@@ -46,7 +48,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   ) : (
                     <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
                   )}
-                  <Text typography="h4">{data.category}</Text>
+                  <Text typography="h4">{categoryName}</Text>
                   <Text>{data.title}</Text>
                 </div>
 
