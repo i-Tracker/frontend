@@ -5,3 +5,7 @@ export const getMainPageLink = () => {
 export const getCategoryPageLink = () => {
   return '/category';
 };
+
+export const getLoginPageLink = () => {
+  return '/login';
+};
