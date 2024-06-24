@@ -1,6 +1,6 @@
 'use client';
 
-import Login from '@/features/auth/components/login';
+import Login from '@/features/auth/components/Login';
 import { Loading } from '@/shared/components/Loading';
 import { Suspense } from 'react';
 

@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
 import { getLoginToken } from '@/features/auth/api/oauth';
 
-export default function KakaoCallbackPage() {
+export default function KakaoCallback() {
   const searchParams = useSearchParams();
   const [authCode, setAuthCode] = useState<string | null>(null);
   const router = useRouter();
