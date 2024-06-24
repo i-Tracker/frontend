@@ -19,7 +19,6 @@ instance.interceptors.request.use(
     return config;
   },
   function (error) {
-    console.log(error);
     return Promise.reject(error);
   },
 );
@@ -34,7 +33,7 @@ instance.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 400) {
+    if (status === 400 || status === 401) {
       // 토큰이 없거나 잘못되었을 경우
       logout();
     }

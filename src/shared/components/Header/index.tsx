@@ -1,11 +1,12 @@
 'use client';
 
-import { getMainPageLink } from '@/shared/lib/link/page';
+import { getLoginPageLink, getMainPageLink } from '@/shared/lib/link/page';
 import Link from 'next/link';
 import Logo from './logo.svg';
-
-import { Suspense } from 'react';
 import { UserProfile } from '../UserProfile';
+import { isLogin } from '@/features/auth/api/oauth';
+import { Button } from '../shadcn/ui/button';
+import { Text } from '../shadcn/Text';
 
 export const Header = () => {
   return (
@@ -14,9 +15,15 @@ export const Header = () => {
         <Link href={getMainPageLink()}>
           <Logo />
         </Link>
-        <Suspense fallback={<div>a</div>}>
+        {isLogin() ? (
           <UserProfile />
-        </Suspense>
+        ) : (
+          <Link href={getLoginPageLink()}>
+            <Button size="sm">
+              <Text>로그인</Text>
+            </Button>
+          </Link>
+        )}
       </nav>
     </header>
   );
