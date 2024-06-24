@@ -5,7 +5,7 @@ import { useToast } from '@/shared/components/shadcn/ui/use-toast';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
-export default function Login() {
+export default function KakaoLogin() {
   const params = useSearchParams();
   const { toast } = useToast();
 
