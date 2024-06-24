@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { issuLoginToken } from '@/features/login/api/oauth';
 import { Loading } from '@/shared/components/Loading';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
+import { getLoginToken } from '@/features/auth/api/oauth';
 
 export default function KakaoCallbackPage() {
   const searchParams = useSearchParams();
@@ -21,14 +21,17 @@ export default function KakaoCallbackPage() {
 
   useEffect(() => {
     if (authCode) {
-      issuLoginToken(authCode)
+      getLoginToken(authCode)
         .then(() => {
           toast({
             title: '로그인 완료!',
           });
-          // router.push('/mypage');
+          router.push('/my');
         })
-        .catch((e) => console.error(e));
+        .catch((e) => {
+          console.error(e);
+          router.push('/login');
+        });
     }
   }, [authCode, router, toast]);
 

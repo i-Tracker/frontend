@@ -9,3 +9,7 @@ export const getCategoryPageLink = () => {
 export const getLoginPageLink = () => {
   return '/login';
 };
+
+export const getMyPageLink = () => {
+  return '/my';
+};

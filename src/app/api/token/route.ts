@@ -1,9 +1,11 @@
 import { API_BASE_URL } from '@/shared/api/constants';
 import axios, { AxiosError } from 'axios';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   const referer = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : API_BASE_URL;
+  const cookieStore = cookies();
 
   try {
     const url = new URL(req.url);
@@ -13,10 +15,11 @@ export async function GET(req: NextRequest) {
         Referer: referer,
       },
     });
+    const jwt = response.headers?.['authorization'] as string;
 
-    const jwt = response.headers?.['authorization'] as string | string[];
+    cookieStore.set('jwt_token', jwt, { httpOnly: true });
 
-    return NextResponse.json({ accessToken: jwt });
+    return NextResponse.json(jwt);
   } catch (e) {
     if (e instanceof AxiosError) {
       console.error('Error:', e.response);
