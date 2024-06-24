@@ -1,6 +1,7 @@
 'use client';
 
 import { API_BASE_URL } from '@/shared/api/constants';
+import { Loading } from '@/shared/components/Loading';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect } from 'react';
@@ -23,7 +24,7 @@ export default function LoginPage() {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={<Loading />}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <button
           onClick={handleButtonClick}

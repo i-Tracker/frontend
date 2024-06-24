@@ -36,8 +36,8 @@ export default function KakaoCallbackPage() {
   }, [authCode, router, toast]);
 
   return (
-    <Suspense>
-      <Loading />
+    <Suspense fallback={<Loading />}>
+      <div>processing...</div>
     </Suspense>
   );
 }
