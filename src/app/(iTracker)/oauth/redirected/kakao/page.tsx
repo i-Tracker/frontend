@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Loading } from '@/shared/components/Loading';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
@@ -35,5 +35,9 @@ export default function KakaoCallbackPage() {
     }
   }, [authCode, router, toast]);
 
-  return <Loading />;
+  return (
+    <Suspense>
+      <Loading />
+    </Suspense>
+  );
 }
