@@ -1,3 +1,5 @@
+'use client';
+
 import { MainProductList } from '@/features/product/components/main';
 import { ProductListSkeleton } from '@/features/search/components/searchResult/Skeleton';
 import { FixedBottomNavbar } from '@/shared/components/FixedBottomNavbar';
