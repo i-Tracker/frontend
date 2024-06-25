@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Text } from '../shadcn/Text';
 import { CategoryIcon, HomeIcon, NotificationIcon } from '@/shared/assets/Icons';
-import { getCategoryPageLink, getMainPageLink } from '@/shared/lib/link/page';
+import { getCategoryPageLink, getMainPageLink, getMyPageLink } from '@/shared/lib/link/page';
 
 export const FixedBottomNavbar = () => {
   return (
@@ -18,10 +18,7 @@ export const FixedBottomNavbar = () => {
           <HomeIcon width={24} height={24} />
           <Text typography="small">홈</Text>
         </Link>
-        <Link
-          href={`${getCategoryPageLink()}/macbook_air`}
-          className="w-16 flex flex-col items-center justify-center gap-1"
-        >
+        <Link href={`${getMyPageLink()}`} className="w-16 flex flex-col items-center justify-center gap-1">
           <NotificationIcon width={24} height={24} />
           <Text typography="small">알림상품</Text>
         </Link>

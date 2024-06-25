@@ -8,6 +8,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { getMetadata } from '@/shared/utils/metadata';
+import { FixedBottomNavbar } from '@/shared/components/FixedBottomNavbar';
 
 export const generateMetadata = async ({
   params,
@@ -56,6 +57,7 @@ export default function Layout({
         ) : null}
         {children}
       </div>
+      <FixedBottomNavbar />
     </div>
   );
 }
