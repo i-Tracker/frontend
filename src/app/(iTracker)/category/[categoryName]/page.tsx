@@ -10,6 +10,12 @@ export default function CategoryNamePage({ params }: { params: { categoryName: C
   const router = useRouter();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
+  useEffect(() => {
     if (params.categoryName === 'airpods') {
       router.push(`${getCategoryPageLink()}/airpods/search`);
     }
