@@ -1,7 +1,9 @@
 'use client';
 
 import { API_BASE_URL } from '@/shared/api/constants';
+import { Text } from '@/shared/components/shadcn/Text';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -23,13 +25,25 @@ export default function KakaoLogin() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <button
-        onClick={handleButtonClick}
-        style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '5px', cursor: 'pointer' }}
-      >
-        카카오톡 로그인
-      </button>
+    <div className="flex flex-col h-[80vh] items-center justify-center">
+      <Text typography="h2" className="font-bold">
+        소셜 로그인
+      </Text>
+      <Text typography="small" className="text-gray-500">
+        로그인 하고 가격 변동 알림을 받아보세요!
+      </Text>
+      <div onClick={handleButtonClick} className="cursor-pointer w-[300px] h-auto mt-8">
+        <Image
+          src="/kakao_login_large_wide.png"
+          width={300}
+          height={90}
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          alt="카카오 로그인"
+        />
+      </div>
     </div>
   );
 }
