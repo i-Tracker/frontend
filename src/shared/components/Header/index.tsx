@@ -7,6 +7,7 @@ import { UserProfile } from '../UserProfile';
 import { isLogin } from '@/features/auth/api/oauth';
 import { Button } from '../shadcn/ui/button';
 import { Text } from '../shadcn/Text';
+import { Suspense } from 'react';
 
 export const Header = () => {
   return (
@@ -16,7 +17,9 @@ export const Header = () => {
           <Logo />
         </Link>
         {isLogin() ? (
-          <UserProfile />
+          <Suspense fallback={<div>asd</div>}>
+            <UserProfile />
+          </Suspense>
         ) : (
           <Link href={getLoginPageLink()}>
             <Button size="sm">

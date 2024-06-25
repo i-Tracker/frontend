@@ -1,12 +1,9 @@
-import { redirect } from 'next/navigation';
+import { FixedBottomNavbar } from '@/shared/components/FixedBottomNavbar';
 
 export default function Home() {
-  redirect('/category/macbook_air');
-  // return (
-  //   <main>
-  //     <Suspense fallback={<CategoryListSkeleton />}>
-  //       <CategoryList />
-  //     </Suspense>
-  //   </main>
-  // );
+  return (
+    <main>
+      <FixedBottomNavbar />
+    </main>
+  );
 }

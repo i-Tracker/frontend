@@ -37,7 +37,7 @@ export default function Layout({
       <Suspense fallback={<CategoryListSkeleton />}>
         <CategoryList />
       </Suspense>
-      <div className="flex-1 w-full flex flex-col py-4">
+      <div className="flex-1 w-full flex flex-col">
         <Text typography="h2" className="mb-6 text-center">
           {categoryName}
         </Text>
