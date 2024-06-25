@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
 import { getLoginToken } from '@/features/auth/api/oauth';
+import { Loading } from '@/shared/components/Loading';
 
 export default function KakaoCallback() {
   const searchParams = useSearchParams();
@@ -34,5 +35,9 @@ export default function KakaoCallback() {
     }
   }, [authCode, router, toast]);
 
-  return <div>processing...</div>;
+  return (
+    <div className="flex w-full h-[80vh] justify-center items-center">
+      <Loading />
+    </div>
+  );
 }
