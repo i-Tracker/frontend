@@ -63,7 +63,8 @@ export const getMainProductList = async (): Promise<GetMainProductListResponse> 
     const data: GetMainProductListResponse = (await response.json()) as GetMainProductListResponse;
 
     return data;
-  } catch {
+  } catch (e) {
+    console.error(e);
     throw new Error('상품을 불러오지 못했습니다.');
   }
 };
