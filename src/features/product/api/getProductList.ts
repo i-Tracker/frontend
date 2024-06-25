@@ -58,7 +58,7 @@ export const getMainProductListUrl = () => `${API_BASE_URL}/api/v1/products`;
 
 export const getMainProductList = async (): Promise<GetMainProductListResponse> => {
   try {
-    const response = await fetch(getMainProductListUrl(), { cache: 'no-store' });
+    const response = await fetch(getMainProductListUrl());
 
     const data: GetMainProductListResponse = (await response.json()) as GetMainProductListResponse;
 
