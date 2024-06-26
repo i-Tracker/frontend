@@ -8,15 +8,15 @@ import { useGetMainProductList } from '../../hooks/useGetMainProductList';
 export const MainProductList = () => {
   const { data: productList } = useGetMainProductList();
 
-  const renderProductItem = (productItem: Macbook | Airpods) => {
+  const renderProductItem = (productItem: Macbook | Airpods, index: number) => {
     switch (productItem.category) {
       case 'macbook_air':
       case 'macbook_pro':
-        return <MacbookSearchItem key={productItem.id} productItem={productItem as Macbook} />;
+        return <MacbookSearchItem key={productItem.id} productItem={productItem as Macbook} rank={index} />;
       case 'airpods':
       case 'airpods_max':
       case 'airpods_pro':
-        return <AirpodsSearchItem key={productItem.id} productItem={productItem as Airpods} />;
+        return <AirpodsSearchItem key={productItem.id} productItem={productItem as Airpods} rank={index} />;
       default:
         return <div>준비중인 카테고리입니다.</div>;
     }

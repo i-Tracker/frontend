@@ -10,15 +10,21 @@ import Link from 'next/link';
 
 interface AirpodsSearchItemProps {
   productItem: Airpods;
+  rank?: number;
 }
 
-export const AirpodsSearchItem = ({ productItem }: AirpodsSearchItemProps) => {
+export const AirpodsSearchItem = ({ productItem, rank }: AirpodsSearchItemProps) => {
   const categoryName = categoryMap[productItem.category];
 
   return (
     <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link href={`/products/airpods/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
         <div className="relative flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
+          {rank !== undefined && (
+            <div className="absolute top-0 left-0 bg-blue-500 text-white py-1 px-2 text-xs font-bold rounded-tl">
+              {rank + 1}위
+            </div>
+          )}
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}

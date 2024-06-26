@@ -19,15 +19,27 @@ export const SearchResultList = ({ category, params }: SearchResultProps) => {
   const { data, hasNextPage, fetchNextPage } = useGetSearchResult(category, params);
   const productData = data.pages.map((page) => page.data).flat();
 
-  const renderProductItem = (productItem: Macbook | Airpods) => {
+  const renderProductItem = (productItem: Macbook | Airpods, index: number) => {
     switch (productItem.category) {
       case 'macbook_air':
       case 'macbook_pro':
-        return <MacbookSearchItem key={productItem.id} productItem={productItem as Macbook} />;
+        return (
+          <MacbookSearchItem
+            key={productItem.id}
+            productItem={productItem as Macbook}
+            rank={index < 5 ? index : undefined}
+          />
+        );
       case 'airpods':
       case 'airpods_max':
       case 'airpods_pro':
-        return <AirpodsSearchItem key={productItem.id} productItem={productItem as Airpods} />;
+        return (
+          <AirpodsSearchItem
+            key={productItem.id}
+            productItem={productItem as Airpods}
+            rank={index < 5 ? index : undefined}
+          />
+        );
       default:
         return <div>준비중인 카테고리입니다.</div>;
     }
