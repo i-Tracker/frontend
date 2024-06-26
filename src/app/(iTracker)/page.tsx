@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <div className="flex-1 w-full flex flex-col py-8 border-gray-200">
-        <Text typography="h4">전체상품 할인율 TOP10</Text>
+        <Text typography="h4">전체 상품 할인율 TOP10</Text>
         <Text typography="p" className="md:text-lg text-gray-500">
           전체 상품 중 오늘 할인율이 가장 높은 상품리스트입니다
         </Text>
