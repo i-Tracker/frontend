@@ -1,8 +1,6 @@
 import { getMainPageLink } from '@/shared/lib/link/page';
 import Link from 'next/link';
 import Logo from './logo.svg';
-import { Text } from '../shadcn/Text';
-import { Button } from '../shadcn/ui/button';
 
 export const Header = () => {
   return (
@@ -11,9 +9,6 @@ export const Header = () => {
         <Link href={getMainPageLink()}>
           <Logo />
         </Link>
-        {/* <Button>
-          <Text>로그인</Text>
-        </Button> */}
       </nav>
     </header>
   );

@@ -36,11 +36,11 @@ const typographyMap = {
   },
   small: {
     tagName: 'small',
-    className: 'text-sm font-medium leading-tight',
+    className: 'text-sm leading-tight',
   },
   xsmall: {
     tagName: 'small',
-    className: 'text-xs font-medium leading-none',
+    className: 'text-xs leading-none',
   },
 } as const;
 

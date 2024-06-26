@@ -4,6 +4,7 @@ import { QueryProvider } from '@/shared/components/QueryProvider';
 import { MSWProvider } from '@/shared/components/MSWProvider';
 import GoogleAnalytics from '@/shared/components/GoogleAnalytics';
 import { getMetadata } from '@/shared/utils/metadata';
+import { Toaster } from '@/shared/components/shadcn/ui/toaster';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <MSWProvider>
           <QueryProvider>{children}</QueryProvider>
         </MSWProvider>
+        <Toaster />
       </body>
     </html>
   );

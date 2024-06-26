@@ -8,6 +8,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { getMetadata } from '@/shared/utils/metadata';
+import { FixedBottomNavbar } from '@/shared/components/FixedBottomNavbar';
 
 export const generateMetadata = async ({
   params,
@@ -37,7 +38,7 @@ export default function Layout({
       <Suspense fallback={<CategoryListSkeleton />}>
         <CategoryList />
       </Suspense>
-      <div className="flex-1 w-full flex flex-col py-4">
+      <div className="flex-1 w-full flex flex-col">
         <Text typography="h2" className="mb-6 text-center">
           {categoryName}
         </Text>
@@ -56,6 +57,7 @@ export default function Layout({
         ) : null}
         {children}
       </div>
+      <FixedBottomNavbar />
     </div>
   );
 }
