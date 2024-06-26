@@ -10,6 +10,7 @@ import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Suspense } from 'react';
 import PriceChart from '../LineChart';
 import { CategoryType, categoryMap } from '@/features/category/constants';
+import { Button } from '@/shared/components/shadcn/ui/button';
 
 // server component
 
@@ -28,7 +29,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
 
     return (
       <div>
-        <div className="mb-8 w-full">
+        <div className="mb-8 w-fit">
           <div className="flex flex-col items-start md:flex-row md:items-center gap-12 md:gap-16">
             <div className="flex items-center md:flex-col md:items-start gap-12 md:gap-4">
               <div className="w-auto h-full rounded-md border-gray-200 border">
@@ -43,11 +44,6 @@ export const ProductDetail = async ({ productId, category }: { productId: number
 
               <div className="w-full">
                 <div>
-                  {data.label === true ? (
-                    <Badge label={'역대 최저가'} />
-                  ) : (
-                    <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
-                  )}
                   <Text typography="h4">{categoryName}</Text>
                   <Text>{data.title}</Text>
                 </div>
@@ -81,7 +77,13 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   </Text>
                   <DiscountBadge discountPercentage={data.discountPercentage} />
                 </div>
+
                 <div>
+                  {data.label === true ? (
+                    <Badge label={'역대 최저가'} />
+                  ) : (
+                    <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
+                  )}
                   <Text typography="p" className="text-gray-500">
                     현재가
                   </Text>
@@ -91,17 +93,17 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                 </div>
               </div>
 
-              <div className="flex h-10 justify-between items-center md:justify-start md:space-x-16 my-8">
-                <div>
+              <div className="flex h-20 justify-between items-center my-8 border rounded py-2">
+                <div className="mx-auto">
                   <Text typography="small" className="text-gray-500">
                     최저가
                   </Text>
-                  <Text className="leading-none font-bold text-[#F45151]">
+                  <Text className="leading-none font-bold text-[#EF6253]">
                     {convertToLocalFormat(Math.floor(data.allTimeLowPrice))}원
                   </Text>
                 </div>
                 <Separator orientation="vertical" />
-                <div>
+                <div className="mx-auto">
                   <Text typography="small" className="text-gray-500">
                     평균가
                   </Text>
@@ -110,7 +112,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   </Text>
                 </div>
                 <Separator orientation="vertical" />
-                <div>
+                <div className="mx-auto">
                   <Text typography="small" className="text-gray-500">
                     최고가
                   </Text>
@@ -119,6 +121,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   </Text>
                 </div>
               </div>
+
               <Suspense>
                 <div className="max-w-[780px] h-[200px] my-10 mx-auto md:mx-0">
                   <PriceChart
@@ -129,6 +132,12 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   />
                 </div>
               </Suspense>
+
+              <div>
+                <Button size="lg" className="w-full ">
+                  🔔 가격 변동 알림받기
+                </Button>
+              </div>
             </div>
           </div>
           <div className="mt-12 mb-24">
@@ -140,7 +149,7 @@ export const ProductDetail = async ({ productId, category }: { productId: number
             </Text>
           </div>
         </div>
-        <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} />
+        <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} bgColor="#EF6253" />
       </div>
     );
   } catch (error) {

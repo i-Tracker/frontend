@@ -48,9 +48,9 @@ const PriceChart = ({ priceInfos, allTimeHighPrice, allTimeLowPrice, averagePric
           activeDot={{ r: 8 }}
           dot={<CustomDot />}
         />
-        <ReferenceLine y={allTimeHighPrice} label="최고가" stroke="red" strokeDasharray="3 3" />
-        <ReferenceLine y={allTimeLowPrice} label="최저가" stroke="green" strokeDasharray="3 3" />
-        <ReferenceLine y={averagePrice} label="평균가" stroke="blue" strokeDasharray="3 3" />
+        <ReferenceLine y={allTimeHighPrice} label="최고가" stroke="#519cf4" strokeDasharray="3 3" />
+        <ReferenceLine y={averagePrice} label="평균가" stroke="#333333" strokeDasharray="3 3" />
+        <ReferenceLine y={allTimeLowPrice} label="최저가" stroke="#ef6253" strokeDasharray="3 3" />
       </LineChart>
     </ResponsiveContainer>
   );

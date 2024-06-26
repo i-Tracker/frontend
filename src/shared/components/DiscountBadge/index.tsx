@@ -8,7 +8,7 @@ const DiscountBadge = ({ discountPercentage }: { discountPercentage: number }) =
       case discountPercentage < 0:
         return (
           <div className="flex items-center justify-center bg-badgeBackground w-[55px] h-[20px] rounded gap-1 px-1">
-            <Triangle color="#F45151" width={10} />
+            <Triangle color="#EF6253" width={10} />
             <Text typography="xsmall" className="text-badge font-bold">
               {discountPercentage}%
             </Text>
