@@ -4,6 +4,6 @@ import { GetMainProductListResponse, getMainProductList } from '../api/getProduc
 export const useGetMainProductList = (): UseSuspenseQueryResult<GetMainProductListResponse> => {
   return useSuspenseQuery({
     queryKey: ['mainProduct'],
-    queryFn: () => getMainProductList(),
+    queryFn: getMainProductList,
   });
 };
