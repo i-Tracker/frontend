@@ -1,8 +1,8 @@
-import { UseSuspenseQueryResult, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { GetFavoritesResponse, getFavorites } from '../api/getFavorites';
 
-export const useGetFavorites = (): UseSuspenseQueryResult<GetFavoritesResponse> => {
-  return useSuspenseQuery({
+export const useGetFavorites = (): UseQueryResult<GetFavoritesResponse> => {
+  return useQuery({
     queryKey: ['favorites'],
     queryFn: getFavorites,
   });

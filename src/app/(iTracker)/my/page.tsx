@@ -16,23 +16,7 @@ export default function MyPage() {
         가격이 변할 때마다 카카오톡 알림을 보내드려요!
       </Text>
 
-      <ErrorBoundary
-        fallback={
-          <Text typography="small" className="text-badge">
-            알림상품을 불러오지 못했어요
-          </Text>
-        }
-      >
-        <Suspense
-          fallback={
-            <div className="p-8">
-              <Loading />
-            </div>
-          }
-        >
-          <FavoritesList />
-        </Suspense>
-      </ErrorBoundary>
+      <FavoritesList />
     </div>
   );
 }
