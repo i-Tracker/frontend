@@ -10,7 +10,7 @@ import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Suspense } from 'react';
 import PriceChart from '../LineChart';
 import { CategoryType, categoryMap } from '@/features/category/constants';
-import { Button } from '@/shared/components/shadcn/ui/button';
+import Notification from '../Notification';
 
 // server component
 
@@ -18,7 +18,9 @@ export const ProductDetail = async ({ productId, category }: { productId: number
   const categoryName = categoryMap[category];
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`, { cache: 'no-store' });
+    const response = await fetch(`${API_BASE_URL}/api/v1/products/${category}/${productId}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`서버에서 데이터를 가져오는 데 실패했습니다. 상태 코드: ${response.status}`);
     }
@@ -26,6 +28,8 @@ export const ProductDetail = async ({ productId, category }: { productId: number
     const data = (await response.json()) as GetProductDetailResponse;
 
     const isMacbook = category === 'macbook_air' || category === 'macbook_pro';
+
+    console.log(data.isFavorite);
 
     return (
       <div>
@@ -132,14 +136,13 @@ export const ProductDetail = async ({ productId, category }: { productId: number
                   />
                 </div>
               </Suspense>
-
-              <div>
-                <Button size="lg" className="w-full ">
-                  🔔 가격 변동 알림받기
-                </Button>
-              </div>
             </div>
           </div>
+
+          <Suspense>
+            <Notification productId={data.id} category={data.category} isFavorite={data.isFavorite} />
+          </Suspense>
+
           <div className="mt-12 mb-24">
             <Text typography="small" className="text-[12px] block text-center md:text-end">
               이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.

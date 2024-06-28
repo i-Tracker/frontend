@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '../constants';
 import LocalStorage from '@/shared/utils/localStorage';
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/features/auth/constants';
-import { logout } from '@/features/auth/api/oauth';
+import { logoutToLoginPage } from '@/features/auth/api/oauth';
 
 const instance = axios.create({
   baseURL: API_BASE_URL,
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
 
     if (status === 400 || status === 401) {
       // 토큰이 없거나 잘못되었을 경우
-      logout();
+      logoutToLoginPage();
     }
 
     return Promise.reject(error);
