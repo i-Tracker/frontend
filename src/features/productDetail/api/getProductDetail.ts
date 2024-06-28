@@ -1,15 +1,13 @@
-import { Macbook } from '@/features/product/api/getProductList';
+import { Airpods, Macbook } from '@/features/product/api/getProductList';
 
-export type GetProductDetailResponse = Macbook & ProductDetailInfo & CoupangUrl;
-
-export type CoupangUrl = {
-  coupangUrl: string;
-};
+export type GetProductDetailResponse = Macbook & Airpods & ProductDetailInfo;
 
 export type ProductDetailInfo = {
   allTimeHighPrice: number;
   allTimeLowPrice: number;
   averagePrice: number;
+  coupangUrl: string;
+  isFavorite: boolean;
   priceInfos: {
     date: string;
     currentPrice: number;
