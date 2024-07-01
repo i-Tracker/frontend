@@ -7,7 +7,7 @@ import { AirpodsSearchItem } from '@/features/search/components/searchResult/Ite
 import { Text } from '@/shared/components/shadcn/Text';
 import { Button } from '@/shared/components/shadcn/ui/button';
 import { useRouter } from 'next/navigation';
-import { getMainPageLink } from '@/shared/lib/link/page';
+import { getCategoryPageLink } from '@/shared/lib/link/page';
 
 const FavoritesList = () => {
   const { data: favorites } = useGetFavorites();
@@ -23,7 +23,7 @@ const FavoritesList = () => {
           <Button
             size="sm"
             onClick={() => {
-              router.push(getMainPageLink());
+              router.push(`${getCategoryPageLink()}/macbook_air`);
             }}
           >
             상품등록 하러가기
