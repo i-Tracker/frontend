@@ -13,7 +13,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     title: `iTracker | ${categoryName}`,
-    asPath: `/products/${categoryName}/${params.productId}`,
+    asPath: `/products/${params.category}/${params.productId}`,
   });
 };
 
