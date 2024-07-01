@@ -21,7 +21,7 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
 
   return (
     <div>
-      <div className="mb-8 w-fitcontent">
+      <div className="mb-8">
         <div className="flex flex-col items-start md:flex-row md:items-center gap-12 md:gap-16">
           <div className="flex items-center md:flex-col md:items-start gap-12 md:gap-4">
             <div className="w-auto h-full rounded-md border-gray-200 border">
