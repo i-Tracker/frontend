@@ -21,7 +21,7 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
 
   return (
     <div>
-      <div className="mb-8 w-fit">
+      <div className="mb-8 w-fitcontent">
         <div className="flex flex-col items-start md:flex-row md:items-center gap-12 md:gap-16">
           <div className="flex items-center md:flex-col md:items-start gap-12 md:gap-4">
             <div className="w-auto h-full rounded-md border-gray-200 border">
@@ -62,20 +62,19 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
           </div>
 
           <div className="w-full">
+            {data.label === true ? (
+              <Badge label={'역대 최저가'} />
+            ) : (
+              <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
+            )}
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <Text typography="small" className="pt-1">
-                  전체 평균가 대비
-                </Text>
-                <DiscountBadge discountPercentage={data.discountPercentage} />
-              </div>
-
               <div>
-                {data.label === true ? (
-                  <Badge label={'역대 최저가'} />
-                ) : (
-                  <div className="inline-flex py-1 px-2 mt-4 mb-2"></div>
-                )}
+                <div className="flex items-center gap-2">
+                  <Text typography="small" className="pb-1">
+                    전체 평균가 대비
+                  </Text>
+                  <DiscountBadge discountPercentage={data.discountPercentage} />
+                </div>
                 <Text typography="p" className="text-gray-500">
                   현재가
                 </Text>
@@ -122,12 +121,11 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
                 />
               </div>
             </Suspense>
+            <Suspense>
+              <Notification productId={data.id} category={data.category} isFavorite={data.isFavorite} />
+            </Suspense>
           </div>
         </div>
-
-        <Suspense>
-          <Notification productId={data.id} category={data.category} isFavorite={data.isFavorite} />
-        </Suspense>
 
         <div className="mt-12 mb-24">
           <Text typography="small" className="text-[12px] block text-center md:text-end">
