@@ -138,7 +138,7 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
           </Text>
         </div>
       </div>
-      <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} bgColor="#EF6253" />
+      <FixedBottomButton title="🚀 구매하러가기" link={data.coupangUrl} bgColor="bg-badge" />
     </div>
   );
 };

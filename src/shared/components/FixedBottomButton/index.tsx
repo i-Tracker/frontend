@@ -8,7 +8,7 @@ interface FixedBottomButtonProps {
 }
 
 export const FixedBottomButton = ({ title, link, bgColor }: FixedBottomButtonProps) => {
-  const bgColorStyles = bgColor ? `bg-[${bgColor}]` : '';
+  const bgColorStyles = bgColor ? bgColor : null;
 
   return (
     <>
