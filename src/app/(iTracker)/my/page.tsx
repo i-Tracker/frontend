@@ -12,7 +12,6 @@ export default function MyPage() {
       <Text typography="p" className="md:text-lg text-gray-500">
         가격이 변할 때마다 카카오톡 알림을 보내드려요!
       </Text>
-
       <FavoritesList />
     </div>
   );

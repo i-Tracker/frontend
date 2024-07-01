@@ -14,15 +14,17 @@ export const UserProfile = () => {
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <Avatar>
-        <AvatarImage src={userInfo?.image} alt="profile-image" />
-        <AvatarFallback></AvatarFallback>
-      </Avatar>
-      <Text typography="h4" className="inline">
-        {userInfo?.nickname}
-      </Text>
-      <Text className="inline">님 안녕하세요!</Text>
+    <div className="w-full flex justify-between flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap">
+        <Avatar>
+          <AvatarImage src={userInfo?.image} alt="profile-image" />
+          <AvatarFallback></AvatarFallback>
+        </Avatar>
+        <Text typography="h4" className="inline">
+          {userInfo?.nickname}
+        </Text>
+        <Text className="inline">님 안녕하세요!</Text>
+      </div>
       <div>
         <Button variant="outline" size="sm" onClick={handleClickLogoutButton}>
           로그아웃
