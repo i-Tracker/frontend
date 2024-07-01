@@ -9,7 +9,7 @@ export const MacbookProductList = ({ category }: { category: CategoryType }) => 
 
   return (
     <div>
-      <ul className="whitespace-nowrap overflow-x-auto flex gap-6 md:gap-12 my-8">
+      <ul className="whitespace-nowrap overflow-x-auto flex gap-6 md:gap-12 my-6">
         {productData?.data.map((productItem, index) => {
           return <MacbookProductListItem key={productItem.id} productItem={productItem} rank={index} />;
         })}
