@@ -14,6 +14,7 @@ export const usePatchFavorites = (productId: number, category: CategoryType, isF
     mutationFn: () => patchFavorites(productId, category),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['favorites'] });
+      await queryClient.refetchQueries({ queryKey: ['productDetail'] });
 
       if (!isFavorite) {
         toast({

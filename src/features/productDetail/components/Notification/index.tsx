@@ -20,7 +20,7 @@ const Notification = ({ productId, category, isFavorite }: NotificationProps) =>
   return (
     <div>
       {isFavorite ? (
-        <Button size="lg" className="w-full bg-badge" onClick={handleAddFavoritesButton}>
+        <Button size="lg" className="w-full bg-badge hover:bg-badge" onClick={handleAddFavoritesButton}>
           🔔 가격 변동 알림 해제
         </Button>
       ) : (
