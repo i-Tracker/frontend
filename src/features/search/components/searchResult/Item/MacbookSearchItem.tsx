@@ -1,5 +1,9 @@
+'use client';
+
 import { categoryMap } from '@/features/category/constants';
 import { Macbook } from '@/features/product/api/getProductList';
+import { useDeleteFavorites } from '@/features/productDetail/hooks/useDeleteFavorites';
+import { TrashCanIcon } from '@/shared/assets/Icons';
 import { Badge } from '@/shared/components/Badge';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
@@ -7,16 +11,26 @@ import { disabledStyles } from '@/shared/styles';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { MouseEvent } from 'react';
 
 interface MacbookSearchItemProps {
   productItem: Macbook;
   rank?: number;
+  isFavoriteItem?: boolean;
 }
 
-export const MacbookSearchItem = ({ productItem, rank }: MacbookSearchItemProps) => {
+export const MacbookSearchItem = ({ productItem, rank, isFavoriteItem = false }: MacbookSearchItemProps) => {
   const categoryName = categoryMap[productItem.category];
   const getProductDetailUrl = (macbookType: string) => {
     return macbookType === 'macbook_air' ? `/products/macbook_air` : `/products/macbook_pro`;
+  };
+
+  const { mutate: deleteFavorites } = useDeleteFavorites(productItem.id, productItem.category);
+
+  const handleDeleteButton = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    deleteFavorites();
   };
 
   return (
@@ -31,6 +45,14 @@ export const MacbookSearchItem = ({ productItem, rank }: MacbookSearchItemProps)
               {rank + 1}위
             </div>
           )}
+          {isFavoriteItem ? (
+            <button
+              onClick={handleDeleteButton}
+              className="flex items-center justify-center w-[32px] h-[32px] absolute top-1 right-1 bg-white text-xs font-bold rounded-full border z-10 border-primary"
+            >
+              <TrashCanIcon width={18} height={18} />
+            </button>
+          ) : null}
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}
