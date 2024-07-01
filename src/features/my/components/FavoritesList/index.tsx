@@ -41,7 +41,7 @@ const FavoritesList = () => {
       case 'airpods':
       case 'airpods_max':
       case 'airpods_pro':
-        return <AirpodsSearchItem key={productItem.id} productItem={productItem as Airpods} />;
+        return <AirpodsSearchItem key={productItem.id} productItem={productItem as Airpods} isFavoriteItem={true} />;
       default:
         return <div>준비중인 카테고리입니다.</div>;
     }
