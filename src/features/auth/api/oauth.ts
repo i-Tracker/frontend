@@ -13,7 +13,14 @@ export const removeAccessToken = () => {
 
 export const logout = () => {
   removeAccessToken();
+
   window.location.href = '/';
+};
+
+export const logoutToLoginPage = () => {
+  removeAccessToken();
+
+  window.location.href = '/login?needLogin=true';
 };
 
 export const getLoginToken = async (code: string) => {

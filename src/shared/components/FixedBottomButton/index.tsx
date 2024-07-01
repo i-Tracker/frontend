@@ -4,14 +4,20 @@ import { Button } from '../shadcn/ui/button';
 interface FixedBottomButtonProps {
   title: string;
   link: string;
+  bgColor?: string;
 }
 
-export const FixedBottomButton = ({ title, link }: FixedBottomButtonProps) => {
+export const FixedBottomButton = ({ title, link, bgColor }: FixedBottomButtonProps) => {
+  const bgColorStyles = bgColor ? `bg-[${bgColor}]` : '';
+
   return (
     <>
       {link ? (
         <Link href={link} target="_blank">
-          <Button size="lg" className="w-full fixed bottom-0 left-0 right-0 rounded-none py-8">
+          <Button
+            size="lg"
+            className={`w-full fixed bottom-0 left-0 right-0 rounded-none py-6 ${bgColorStyles} hover:${bgColorStyles}`}
+          >
             {title}
           </Button>
         </Link>

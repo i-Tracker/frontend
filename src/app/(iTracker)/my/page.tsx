@@ -1,39 +1,18 @@
-'use client';
-
-import { isLogin, logout } from '@/features/auth/api/oauth';
-import { useUserInfo } from '@/features/auth/hooks/useUserInfo';
+import FavoritesList from '@/features/my/components/FavoritesList';
 import { UserProfile } from '@/shared/components/UserProfile';
 import { Text } from '@/shared/components/shadcn/Text';
-import { Button } from '@/shared/components/shadcn/ui/button';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function MyPage() {
-  const router = useRouter();
-  const { data: userInfo } = useUserInfo();
-
-  useEffect(() => {
-    if (!isLogin()) {
-      router.push('/login?needLogin=true');
-    }
-  }, [router, userInfo]);
-
-  const handleClickLogoutButton = () => {
-    logout();
-  };
-
   return (
     <div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-2 mb-12">
         <UserProfile />
-        <Text typography="h4" className="inline">
-          {userInfo?.nickname}
-        </Text>
-        <Text className="inline">님 안녕하세요!</Text>
       </div>
-      <Button variant="outline" size="sm" onClick={handleClickLogoutButton}>
-        로그아웃
-      </Button>
+      <Text typography="h4">알림상품</Text>
+      <Text typography="p" className="md:text-lg text-gray-500">
+        가격이 변할 때마다 카카오톡 알림을 보내드려요!
+      </Text>
+      <FavoritesList />
     </div>
   );
 }

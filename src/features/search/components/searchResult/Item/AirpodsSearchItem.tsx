@@ -1,5 +1,7 @@
 import { categoryMap } from '@/features/category/constants';
 import { Airpods } from '@/features/product/api/getProductList';
+import { useDeleteFavorites } from '@/features/productDetail/hooks/useDeleteFavorites';
+import { TrashCanIcon } from '@/shared/assets/Icons';
 import { Badge } from '@/shared/components/Badge';
 import DiscountBadge from '@/shared/components/DiscountBadge';
 import { Text } from '@/shared/components/shadcn/Text';
@@ -7,18 +9,42 @@ import { disabledStyles } from '@/shared/styles';
 import { convertToLocalFormat } from '@/shared/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import { MouseEvent } from 'react';
 
 interface AirpodsSearchItemProps {
   productItem: Airpods;
+  rank?: number;
+  isFavoriteItem?: boolean;
 }
 
-export const AirpodsSearchItem = ({ productItem }: AirpodsSearchItemProps) => {
+export const AirpodsSearchItem = ({ productItem, rank, isFavoriteItem = false }: AirpodsSearchItemProps) => {
   const categoryName = categoryMap[productItem.category];
+
+  const { mutate: deleteFavorites } = useDeleteFavorites(productItem.id, productItem.category);
+
+  const handleDeleteButton = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    deleteFavorites();
+  };
 
   return (
     <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link href={`/products/airpods/${productItem.id}`} className="flex flex-col gap-2 cursor-pointer">
         <div className="relative flex items-center justify-center w-auto h-full rounded-md border-gray-200 border">
+          {rank !== undefined && (
+            <div className="absolute top-0 left-0 bg-blue-500 text-white py-1 px-2 text-xs font-bold rounded-tl">
+              {rank + 1}위
+            </div>
+          )}
+          {isFavoriteItem ? (
+            <button
+              onClick={handleDeleteButton}
+              className="flex items-center justify-center w-[32px] h-[32px] absolute top-1 right-1 bg-white text-xs font-bold rounded-full border z-10 border-primary"
+            >
+              <TrashCanIcon width={18} height={18} />
+            </button>
+          ) : null}
           <Image
             src={productItem.imageUrl}
             alt={productItem.title}

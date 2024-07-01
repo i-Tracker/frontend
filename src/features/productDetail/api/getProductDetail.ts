@@ -1,30 +1,29 @@
-import { Macbook } from '@/features/product/api/getProductList';
+import { CategoryType } from '@/features/category/constants';
+import { Airpods, Macbook } from '@/features/product/api/getProductList';
+import instance from '@/shared/api/axios/instance';
+import { API_BASE_URL } from '@/shared/api/constants';
 
-export type GetProductDetailResponse = Macbook & ProductDetailInfo & CoupangUrl;
-
-export type CoupangUrl = {
-  coupangUrl: string;
-};
+export type GetProductDetailResponse = Macbook & Airpods & ProductDetailInfo;
 
 export type ProductDetailInfo = {
   allTimeHighPrice: number;
   allTimeLowPrice: number;
   averagePrice: number;
+  coupangUrl: string;
+  isFavorite: boolean;
   priceInfos: {
     date: string;
     currentPrice: number;
   }[];
 };
 
-// 클라이언트 상태 관리를 위한 api 호출함수
-// export const getProductDetailUrl = (productId: number) => `/api/products/${productId}`;
+export const getProductDetail = async (
+  productId: number,
+  category: CategoryType,
+): Promise<GetProductDetailResponse> => {
+  const response = await instance.get(`${API_BASE_URL}/api/v1/products/${category}/${productId}`);
 
-// export const getProductDetail = async (productId: number): Promise<GetProductDetailResponse> => {
-//   const url = `${getProductDetailUrl(productId)}`;
+  const data = (await response.data) as GetProductDetailResponse;
 
-//   const response = await fetch(url);
-
-//   const data = (await response.json()) as GetProductDetailResponse;
-
-//   return data;
-// };
+  return data;
+};
