@@ -1,9 +1,6 @@
 import FavoritesList from '@/features/my/components/FavoritesList';
-import { Loading } from '@/shared/components/Loading';
 import { UserProfile } from '@/shared/components/UserProfile';
 import { Text } from '@/shared/components/shadcn/Text';
-import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
 export default function MyPage() {
   return (
