@@ -10,7 +10,6 @@ export const generateMetadata = async ({
   // eslint-disable-next-line @typescript-eslint/require-await
 }): Promise<Metadata> => {
   const categoryName = categoryMap[params.category];
-  console.log(params.category);
 
   return getMetadata({
     title: `iTracker | ${categoryName}`,
