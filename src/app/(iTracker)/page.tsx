@@ -1,6 +1,7 @@
 import { MainProductList } from '@/features/product/components/main';
 import { ProductListSkeleton } from '@/features/search/components/searchResult/Skeleton';
 import { FixedBottomNavbar } from '@/shared/components/FixedBottomNavbar';
+import Footer from '@/shared/components/Footer';
 import { Text } from '@/shared/components/shadcn/Text';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -19,6 +20,7 @@ export default function Home() {
           </Suspense>
         </ErrorBoundary>
       </div>
+      <Footer />
       <FixedBottomNavbar />
     </>
   );
