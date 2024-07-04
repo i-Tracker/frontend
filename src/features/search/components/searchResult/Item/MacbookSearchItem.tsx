@@ -34,7 +34,7 @@ export const MacbookSearchItem = ({ productItem, rank, isFavoriteItem = false }:
   };
 
   return (
-    <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
+    <li className={`min-w-[150px] w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link
         href={`${getProductDetailUrl(productItem.category)}/${productItem.id}`}
         className="flex flex-col gap-2 cursor-pointer"

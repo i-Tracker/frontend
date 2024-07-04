@@ -9,9 +9,14 @@ export default function MyPage() {
         <UserProfile />
       </div>
       <Text typography="h4">알림상품</Text>
-      <Text typography="p" className="md:text-lg text-gray-500">
-        가격이 변할 때마다 카카오톡 알림을 보내드려요!
-      </Text>
+      <div className="flex flex-wrap gap-1">
+        <Text typography="small" className="text-gray-500">
+          가격이 변할 때마다
+        </Text>
+        <Text typography="small" className="text-gray-500">
+          매일 18시에 카카오톡 알림을 보내드려요!
+        </Text>
+      </div>
       <FavoritesList />
     </div>
   );
