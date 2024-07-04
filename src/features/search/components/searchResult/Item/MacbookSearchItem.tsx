@@ -34,7 +34,7 @@ export const MacbookSearchItem = ({ productItem, rank, isFavoriteItem = false }:
   };
 
   return (
-    <li className={`w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
+    <li className={`min-w-[150px] w-full mb-5 ${disabledStyles(productItem.isOutOfStock)}`}>
       <Link
         href={`${getProductDetailUrl(productItem.category)}/${productItem.id}`}
         className="flex flex-col gap-2 cursor-pointer"
@@ -101,6 +101,9 @@ export const MacbookSearchItem = ({ productItem, rank, isFavoriteItem = false }:
               {convertToLocalFormat(productItem.currentPrice)}원
             </Text>
           </div>
+          <Text typography="xsmall" className="text-gray-500">
+            {productItem.notificationCount ?? 0}명이 알림 받는 중
+          </Text>
         </div>
       </Link>
     </li>

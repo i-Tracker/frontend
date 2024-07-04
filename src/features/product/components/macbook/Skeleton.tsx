@@ -1,4 +1,4 @@
-import { ProductItemSkeleton } from './Item/Skeleton';
+import { ProductItemSkeleton } from '@/features/search/components/searchResult/Item/Skeleton';
 
 export const MacbookProductListSkeleton = () => {
   const items = Array.from({ length: 5 }, (_, i) => <ProductItemSkeleton key={i} />);

@@ -51,7 +51,7 @@ export default function SearchResult({ params }: { params: { categoryName: Categ
         <SearchResultList category={params.categoryName} params={filterProperty} />
       </Suspense>
       {!(categoryName === 'AirPods') ? (
-        <Filter title="필터 재설정" category={params.categoryName} variant={true} />
+        <Filter title="필터 재설정" category={params.categoryName} variant={false} />
       ) : null}
     </div>
   );

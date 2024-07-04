@@ -42,6 +42,7 @@ export default function Layout({
         <Text typography="h2" className="mb-6 text-center">
           {categoryName}
         </Text>
+        {children}
         {categoryName === 'MacBook Air' || categoryName === 'MacBook Pro' ? (
           <>
             <Text typography="h4">오늘의 할인율 TOP5</Text>
@@ -55,7 +56,6 @@ export default function Layout({
             </ErrorBoundary>
           </>
         ) : null}
-        {children}
       </div>
       <FixedBottomNavbar />
     </div>

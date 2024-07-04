@@ -1,5 +1,3 @@
-'use client';
-
 import KakaoLogin from '@/features/auth/components/KakaoLogin';
 import { Loading } from '@/shared/components/Loading';
 import { Suspense } from 'react';

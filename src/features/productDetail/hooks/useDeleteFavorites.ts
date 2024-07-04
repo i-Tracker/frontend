@@ -11,6 +11,7 @@ export const useDeleteFavorites = (productId: number, category: CategoryType) =>
     mutationFn: () => patchFavorites(productId, category),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['favorites'] });
+      await queryClient.refetchQueries({ queryKey: ['productDetail'] });
     },
     onError: () => {
       alert('삭제에 실패했습니다.');

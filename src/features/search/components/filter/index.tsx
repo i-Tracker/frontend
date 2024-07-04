@@ -20,6 +20,7 @@ import { Text } from '@/shared/components/shadcn/Text';
 import { Label } from '@radix-ui/react-label';
 import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
+import { SearchIcon } from '@/shared/assets/Icons';
 
 export const Filter = ({ title, category, variant }: { title: string; category: CategoryType; variant: boolean }) => {
   const categoryName = categoryMap[category];
@@ -68,8 +69,9 @@ export const Filter = ({ title, category, variant }: { title: string; category: 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="my-4" variant={variant ? 'outline' : 'default'}>
-          <Text typography="xsmall" className="md:text-sm">
+        <Button className="ml-auto w-[105px] my-4 bg-badge" variant={variant ? 'outline' : 'default'}>
+          <Text typography="xsmall" className="md:text-sm flex items-center gap-1">
+            <SearchIcon width={14} height={14} />
             {title}
           </Text>
         </Button>
