@@ -124,15 +124,21 @@ export const ProductDetail = ({ productId, category }: { productId: number; cate
             <Suspense>
               <Notification productId={data.id} category={data.category} isFavorite={data.isFavorite} />
             </Suspense>
+            <Text typography="small" className="block text-end my-2 text-gray-500">
+              {data.notificationCount ?? 0}명이 이미 알림을 받고 있어요!
+            </Text>
           </div>
         </div>
 
         <div className="mt-12 mb-24">
-          <Text typography="small" className="text-[12px] block text-center md:text-end">
+          <Text typography="small" className="text-[12px] block text-start md:text-end">
             이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
           </Text>
-          <Text className="text-[10px] block text-center md:text-end">
+          <Text className="text-[10px] block text-start md:text-end mt-2">
             * 쿠팡 정보와 동일하지 않을 수 있으니 쿠팡에서 가격을 직접 확인 후 이용바랍니다.
+          </Text>
+          <Text className="text-[10px] block text-start md:text-end">
+            * 발생한 수익은 아이트래커 서비스를 무료로 운영하기 위해 사용됩니다.
           </Text>
         </div>
       </div>
