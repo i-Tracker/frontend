@@ -23,6 +23,7 @@ export type Product = {
   label: boolean;
   imageUrl: string;
   isOutOfStock: boolean;
+  notificationCount: number;
 };
 
 export type Macbook = Product & {

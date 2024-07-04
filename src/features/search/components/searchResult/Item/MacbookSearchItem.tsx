@@ -101,6 +101,9 @@ export const MacbookSearchItem = ({ productItem, rank, isFavoriteItem = false }:
               {convertToLocalFormat(productItem.currentPrice)}원
             </Text>
           </div>
+          <Text typography="xsmall" className="text-gray-500">
+            {productItem.notificationCount ?? 0}명이 알림 받는 중
+          </Text>
         </div>
       </Link>
     </li>
