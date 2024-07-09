@@ -29,7 +29,6 @@ instance.interceptors.response.use(
   },
   async function (error) {
     const {
-      config,
       response: { status },
     } = error;
 

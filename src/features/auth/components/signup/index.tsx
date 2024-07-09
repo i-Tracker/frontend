@@ -6,11 +6,14 @@ import { Input } from '@/shared/components/shadcn/ui/input';
 import { Label } from '@/shared/components/shadcn/ui/label';
 import { ChangeEvent, FormEvent, KeyboardEvent, useRef, useState } from 'react';
 import { getSignupStatus } from '../../api/getSignupStatus';
+import { API_BASE_URL } from '@/shared/api/constants';
+import { useRouter } from 'next/navigation';
 
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState<string[]>(['010', '', '']);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const router = useRouter();
 
   const inputRefs = [useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null)];
 
@@ -52,8 +55,13 @@ export default function Signup() {
       const response = await getSignupStatus(fullNumber);
       const 회원가입된유저인가 = response.data.isDuplicatedPhoneNumber;
 
-      console.log(회원가입된유저인가);
-      // 여기에 서버로 데이터를 보내는 로직을 추가할 수 있습니다.
+      if (회원가입된유저인가) {
+        alert('이미 가입된 회원입니다. 카카오 로그인을 통해 로그인해주세요.');
+        router.push('/login');
+      } else {
+        alert('최초 가입자입니다. 카카오 로그인으로 이동합니다.');
+        window.location.href = `${API_BASE_URL}/api/v1/oauth/kakao`;
+      }
     } else {
       setError('유효한 전화번호를 입력해주세요.');
     }

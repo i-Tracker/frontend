@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
-import { getLoginToken } from '@/features/auth/api/oauth';
+import { handleLogin } from '@/features/auth/api/oauth';
 import { Loading } from '@/shared/components/Loading';
 
 export default function KakaoCallback() {
@@ -21,7 +21,7 @@ export default function KakaoCallback() {
 
   useEffect(() => {
     if (authCode) {
-      getLoginToken(authCode)
+      handleLogin(authCode)
         .then(() => {
           toast({
             title: '로그인 완료!',
