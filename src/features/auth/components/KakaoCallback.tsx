@@ -9,19 +9,22 @@ import { Loading } from '@/shared/components/Loading';
 export default function KakaoCallback() {
   const searchParams = useSearchParams();
   const [authCode, setAuthCode] = useState<string | null>(null);
+  const [isFirstUser, setIsFirstUser] = useState<string | null>(null);
   const router = useRouter();
   const { toast } = useToast();
 
   useEffect(() => {
     const code = searchParams.get('code');
-    if (code && code !== authCode) {
+    const 최초가입자인가 = searchParams.get('new');
+    if (code && code !== authCode && 최초가입자인가 && 최초가입자인가 !== isFirstUser) {
       setAuthCode(code);
+      setIsFirstUser(최초가입자인가);
     }
-  }, [searchParams, authCode]);
+  }, [searchParams, authCode, isFirstUser]);
 
   useEffect(() => {
-    if (authCode) {
-      handleLogin(authCode)
+    if (authCode && isFirstUser !== null) {
+      handleLogin(authCode, isFirstUser)
         .then(() => {
           toast({
             title: '로그인 완료!',
@@ -33,7 +36,7 @@ export default function KakaoCallback() {
           router.push('/login');
         });
     }
-  }, [authCode, router, toast]);
+  }, [authCode, router, toast, isFirstUser]);
 
   return (
     <div className="flex w-full h-[80vh] justify-center items-center">

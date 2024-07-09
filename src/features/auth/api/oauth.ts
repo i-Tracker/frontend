@@ -24,9 +24,9 @@ export const logoutToLoginPage = () => {
   window.location.href = '/login?needLogin=true';
 };
 
-export const getLoginToken = async (code: string) => {
+export const getLoginToken = async (code: string, isFirstUser: string) => {
   try {
-    const response = await instance.get(`${API_BASE_URL}/api/v1/oauth/login/kakao?code=${code}`);
+    const response = await instance.get(`${API_BASE_URL}/api/v1/oauth/login/kakao?code=${code}&new=${isFirstUser}`);
     const jwt = response.headers?.['authorization'] as string;
 
     saveAccessToken(jwt);
@@ -36,26 +36,15 @@ export const getLoginToken = async (code: string) => {
   }
 };
 
-export const getNewLoginToken = async (code: string) => {
+export const handleLogin = async (code: string, isFirstUser: string) => {
   try {
-    const response = await instance.get(`${API_BASE_URL}/api/v1/oauth/login/new/kakao?code=${code}`);
-    const jwt = response.headers?.['authorization'] as string;
-
-    saveAccessToken(jwt);
-  } catch (error) {
-    alert('로그인 실패:');
-    console.error(error);
-  }
-};
-
-export const handleLogin = async (code: string) => {
-  try {
-    await getLoginToken(code);
+    await getLoginToken(code, isFirstUser);
   } catch (error) {
     if (error instanceof AxiosError) {
-      if (error.status === 400 && error.code === 'ERR_4000') {
+      if (error.status === 400 && error.code === 'ERR_4010') {
         // 최초 로그인 사용자인 경우
-        await getNewLoginToken(code);
+        alert('최초 가입자입니다. 회원가입 페이지로 이동합니다.');
+        window.location.href = '/signup';
       } else {
         alert('로그인 실패:');
         console.error(error);
