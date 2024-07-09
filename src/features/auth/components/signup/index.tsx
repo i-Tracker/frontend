@@ -8,11 +8,13 @@ import { ChangeEvent, FormEvent, KeyboardEvent, useRef, useState } from 'react';
 import { getSignupStatus } from '../../api/getSignupStatus';
 import { API_BASE_URL } from '@/shared/api/constants';
 import { useRouter } from 'next/navigation';
+import { useUserStatus } from '../../context/userStatusContext';
 
 export default function Signup() {
   const [phoneNumber, setPhoneNumber] = useState<string[]>(['010', '', '']);
   const [isValid, setIsValid] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const { setIsFirstTimeUser } = useUserStatus();
   const router = useRouter();
 
   const inputRefs = [useRef<HTMLInputElement>(null), useRef<HTMLInputElement>(null)];
@@ -60,6 +62,8 @@ export default function Signup() {
         router.push('/login');
       } else {
         alert('최초 가입자입니다. 카카오 로그인으로 이동합니다.');
+        setIsFirstTimeUser(true);
+
         window.location.href = `${API_BASE_URL}/api/v1/oauth/kakao`;
       }
     } else {

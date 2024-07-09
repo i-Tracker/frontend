@@ -5,6 +5,7 @@ import { MSWProvider } from '@/shared/components/MSWProvider';
 import GoogleAnalytics from '@/shared/components/GoogleAnalytics';
 import { getMetadata } from '@/shared/utils/metadata';
 import { Toaster } from '@/shared/components/shadcn/ui/toaster';
+import { UserStatusProvider } from '@/features/auth/context/userStatusContext';
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -28,9 +29,13 @@ export default function RootLayout({
     <html lang="ko">
       <body className={roboto.className}>
         {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+
         <MSWProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <UserStatusProvider>{children}</UserStatusProvider>
+          </QueryProvider>
         </MSWProvider>
+
         <Toaster />
       </body>
     </html>
