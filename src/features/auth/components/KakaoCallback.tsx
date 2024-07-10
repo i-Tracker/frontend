@@ -9,7 +9,7 @@ import { useLogin } from '../hooks/useLogin';
 export default function KakaoCallback() {
   const searchParams = useSearchParams();
   const [authCode, setAuthCode] = useState<string | null>(null);
-  const { handleLogin } = useLogin();
+  const { getLoginToken } = useLogin();
 
   const router = useRouter();
   const { toast } = useToast();
@@ -24,7 +24,7 @@ export default function KakaoCallback() {
 
   useEffect(() => {
     if (authCode) {
-      handleLogin(authCode)
+      getLoginToken(authCode)
         .then(() => {
           toast({
             title: '로그인 완료!',
