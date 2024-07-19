@@ -1,16 +1,19 @@
 import { ArrowBack } from '@/shared/assets/Icons';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const HeaderWithBackRoute = () => {
   const router = useRouter();
+  const pathName = usePathname();
+
+  const getProductCategory = () => {
+    const parts = pathName.split('/');
+    return parts.length > 2 ? parts[2] : '';
+  };
 
   const goToBackPage = () => {
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push('/category/macbook_air');
-    }
+    router.push(`/category/${getProductCategory()}`);
   };
+
   return (
     <header className="w-full flex items-center">
       <nav className="w-[1080px] h-[70px] flex items-center justify-between mx-auto border-b">
