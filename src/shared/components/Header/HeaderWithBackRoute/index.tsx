@@ -5,9 +5,12 @@ const HeaderWithBackRoute = () => {
   const router = useRouter();
 
   const goToBackPage = () => {
-    router.back();
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push('/category/macbook_air');
+    }
   };
-
   return (
     <header className="w-full flex items-center">
       <nav className="w-[1080px] h-[70px] flex items-center justify-between mx-auto border-b">
