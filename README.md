@@ -28,8 +28,9 @@
 
 ![image](https://github.com/i-Tracker/frontend/assets/62369936/e045d870-4a96-45a8-85d3-562bebf3c36e)
 
-### 가격 변동 🔔알림 기능은 현재 💻개발중이에요
+### 5. 🔔 가격 변동 알림을 카카오톡 알림톡으로 보내드려요
 
+![제목을-입력해주세요_-003](https://github.com/user-attachments/assets/5db3c2db-8b73-4081-9a25-ae83eecb5e3c)
 
 ### 배포 주소
 [itracker | 쿠팡 애플 제품 가격 변동 알림 서비스](https://itracker.info)
