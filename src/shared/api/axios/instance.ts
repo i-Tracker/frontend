@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { API_BASE_URL } from '../constants';
 import LocalStorage from '@/shared/utils/localStorage';
 import { ACCESS_TOKEN_LOCAL_STORAGE_KEY } from '@/features/auth/constants';
@@ -24,18 +24,18 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  async function (response) {
-    return response;
-  },
-  async function (error) {
-    const {
-      config,
-      response: { status },
-    } = error;
+  (response) => response,
+  (error: unknown) => {
+    if (error instanceof AxiosError && error.response) {
+      const { status } = error.response;
 
-    if (status === 400 || status === 401) {
-      // 토큰이 없거나 잘못되었을 경우
-      logoutToLoginPage();
+      if (status === 400 || status === 401) {
+        // 토큰이 없거나 잘못되었을 경우
+        logoutToLoginPage();
+      }
+    } else {
+      // AxiosError가 아니거나 response가 없는 경우의 처리
+      console.error('An unexpected error occurred:', error);
     }
 
     return Promise.reject(error);

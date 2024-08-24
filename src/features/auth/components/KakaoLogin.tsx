@@ -4,6 +4,7 @@ import { API_BASE_URL } from '@/shared/api/constants';
 import { Text } from '@/shared/components/shadcn/Text';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -44,6 +45,11 @@ export default function KakaoLogin() {
           alt="카카오 로그인"
         />
       </div>
+      <Link href="/signup" className="mt-4">
+        <Text typography="xsmall" className="border-b border-gray-600">
+          회원이 아니신가요?
+        </Text>
+      </Link>
     </div>
   );
 }

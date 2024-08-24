@@ -1,11 +1,17 @@
 import { ArrowBack } from '@/shared/assets/Icons';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 const HeaderWithBackRoute = () => {
   const router = useRouter();
+  const pathName = usePathname();
+
+  const getProductCategory = () => {
+    const parts = pathName.split('/');
+    return parts.length > 2 ? parts[2] : '';
+  };
 
   const goToBackPage = () => {
-    router.back();
+    router.push(`/category/${getProductCategory()}`);
   };
 
   return (

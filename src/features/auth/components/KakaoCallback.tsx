@@ -3,17 +3,20 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useToast } from '@/shared/components/shadcn/ui/use-toast';
-import { getLoginToken } from '@/features/auth/api/oauth';
 import { Loading } from '@/shared/components/Loading';
+import { useLogin } from '../hooks/useLogin';
 
 export default function KakaoCallback() {
   const searchParams = useSearchParams();
   const [authCode, setAuthCode] = useState<string | null>(null);
+  const { getLoginToken } = useLogin();
+
   const router = useRouter();
   const { toast } = useToast();
 
   useEffect(() => {
     const code = searchParams.get('code');
+
     if (code && code !== authCode) {
       setAuthCode(code);
     }
@@ -28,7 +31,7 @@ export default function KakaoCallback() {
           });
           router.push('/my');
         })
-        .catch((e) => {
+        .catch((e: unknown) => {
           console.error(e);
           router.push('/login');
         });
