@@ -8,6 +8,7 @@
 <br><br><br>
 
 # iTracker (아이트래커)
+
 ![image](https://github.com/i-Tracker/frontend/assets/62369936/e1b6647d-b9d4-40df-925e-e657f888cded)
 
 # 서비스 간략하게 확인하기
@@ -30,6 +31,6 @@
 
 ### 가격 변동 🔔알림 기능은 현재 💻개발중이에요
 
-
 ### 배포 주소
-[itracker | 쿠팡 애플 제품 가격 변동 알림 서비스](https://itracker.info)
+
+[itracker | 쿠팡 애플 제품 가격 변동 알림 서비스](http://52.78.37.183)
