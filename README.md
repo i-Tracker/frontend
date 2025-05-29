@@ -33,4 +33,4 @@
 ![제목을-입력해주세요_-003](https://github.com/user-attachments/assets/5db3c2db-8b73-4081-9a25-ae83eecb5e3c)
 
 ### 배포 주소
-[itracker | 쿠팡 애플 제품 가격 변동 알림 서비스](https://itracker.info)
+[itracker | 쿠팡 애플 제품 가격 변동 알림 서비스](http://52.78.37.183/)
